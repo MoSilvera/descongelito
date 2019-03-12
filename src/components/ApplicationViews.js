@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Route } from "react-router-dom"
-import Map from "./map/Map"
+import MapContainer from "./map/Map"
 import Landing from "./home/Landing"
 import ContactEdit from "./contact/contactInfo/ContactEdit"
 import ContactList from "./contact/ContactList"
@@ -72,7 +72,7 @@ class ApplicationViews extends Component {
           return <ContactList {...props} />
         }} />
         <Route exact path="/map" render={(props) => {
-          return <Map {...props} />
+          return <MapContainer {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info" render={props => {
           return <ContactInfo users={this.state.users} {...props} />
