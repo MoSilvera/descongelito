@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ContactCard from "./ContactCard"
+import "./contactList.css"
 
 
 
@@ -10,8 +11,7 @@ export default class ContactList extends Component {
 
         return (
 
-            <section className="contact list">
-            this is the contact List page
+            <section className="contactList">
             <button type="button"
                     className="btn btn-success justify-content-center"
                     onClick={() => {
@@ -20,7 +20,7 @@ export default class ContactList extends Component {
                 }>
                     Add Contact
                     </button>
-            <ContactCard key="1" users={this.props.users} {...this.props}/>
+            <ContactCard key="1" contacts={this.props.contacts} users={this.props.users} {...this.props}/>
               </section>
         )
     }

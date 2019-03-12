@@ -3,19 +3,19 @@ import Settings from "./Settings"
 export default Object.create(null, {
     GET: {
         value: function (id) {
-            return fetch(`${Settings.url}/${this.array}/${id}`)
+            return fetch(`${Settings.remoteURL}/${this.array}/${id}`)
                 .then(r => r.json())
         }
     },
     GETALL: {
-        value: function () {
-            return fetch(`${Settings.url}/${this.array}`)
+        value: function () { 
+            return fetch(`${Settings.remoteURL}/${this.array}`)
                 .then(r => r.json())
         }
     },
     DELETE: {
         value: function (id) {
-            return fetch(`${Settings.url}/${this.array}/${id}`,
+            return fetch(`${Settings.remoteURL}/${this.array}/${id}`,
                 {
                     method: "DELETE"
                 })
@@ -23,7 +23,7 @@ export default Object.create(null, {
     },
     POST: {
         value: function (obj) {
-            return fetch(`${Settings.url}/${this.array}`, {
+            return fetch(`${Settings.remoteURL}/${this.array}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -34,7 +34,7 @@ export default Object.create(null, {
     },
     PUT: {
         value: function (obj) {
-            return fetch(`${Settings.url}/${this.array}/${obj.id}`, {
+            return fetch(`${Settings.remoteURL}/${this.array}/${obj.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

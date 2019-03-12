@@ -12,9 +12,9 @@ export default class ContactContactList extends Component {
         return (
 
             <section className="contactContactList">
-           this is the contact contact list page 
-           <ContactEmailCard />
-           <ContactEmailPhoneCard />
+           this is the contact contact list page
+           <ContactEmailCard key="email" users={this.props.users} {...this.props} />
+           <ContactEmailPhoneCard key="phone" users={this.props.users} {...this.props}/>
               </section>
         )
     }

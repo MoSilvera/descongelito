@@ -1,0 +1,9 @@
+.contactList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contactCard {
+    flex-basis: 31%;
+}

@@ -7,10 +7,13 @@ export default class ContactInfo extends Component {
 
     render() {
 
+        let oneContact = () => {return this.props.contacts.filter(contact => (contact.id === parseInt(this.props.match.params.contactId)))
+            .map(contact => {return <h1 key={contact.id}>{contact.contactFirstName} {contact.contactLastName}</h1>})}
+
         return (
 
             <section className="contactInfo">
-                this is the contact info page
+                <div>{oneContact()} </div>
             <button type="button"
                     className="btn btn-success justify-content-center"
                     onClick={() => {

@@ -23,7 +23,7 @@ import raidLocationManager from "../modules/resourceManager/raidLocationManager"
 import contactManager from "../modules/resourceManager/contactManager"
 class ApplicationViews extends Component {
   state = {
-    users: [{}],
+    users: [],
     raidLocations: [],
     contacts: [],
     emails: [],
@@ -34,32 +34,32 @@ class ApplicationViews extends Component {
   }
   componentDidMount() {
     const newState = {}
-    // userManager.GETALL().then(users => {
-    //   newState.users = users
-    // })
-    // .then(() => 
-    // raidLocationManager.GETALL().then(raidLocations => {
-    //   newState.raidLocations = raidLocations
-    // })
-    // )
-    // .then(() => contactManager.GETALL().then(contacts => {
-    //   newState.contacts = contacts
-    // }))
-    // .then(() => emailManager.GETALL().then(emails => {
-    //   newState.emails = emails
-    // }))
-    // .then(() => cellNumberManager.GETALL().then(cellNumbers => {
-    //   newState.cellNumbers = cellNumbers
-    // }))
-    // .then(() => carrierManager.GETALL().then(carriers => {
-    //   newState.carriers = carriers
-    // }))
-    // .then(() => messageManager.GETALL().then(messages => {
-    //   newState.messages = messages
-    // }))
-    //   .then(() => {
-    //     this.setState(newState)
-    //   })
+    userManager.GETALL().then(users => {
+      newState.users = users
+    })
+    .then(() =>
+    raidLocationManager.GETALL().then(raidLocations => {
+      newState.raidLocations = raidLocations
+    })
+    )
+    .then(() => contactManager.GETALL().then(contacts => {
+      newState.contacts = contacts
+    }))
+    .then(() => emailManager.GETALL().then(emails => {
+      newState.emails = emails
+    }))
+    .then(() => cellNumberManager.GETALL().then(cellNumbers => {
+      newState.cellNumbers = cellNumbers
+    }))
+    .then(() => carrierManager.GETALL().then(carriers => {
+      newState.carriers = carriers
+    }))
+    .then(() => messageManager.GETALL().then(messages => {
+      newState.messages = messages
+    }))
+      .then(() => {
+        this.setState(newState)
+      })
 
   }
   render() {
@@ -70,7 +70,7 @@ class ApplicationViews extends Component {
           return <Landing {...props} />
         }} />
         <Route exact path="/contacts" render={(props) => {
-          return <ContactList {...props} />
+          return <ContactList contacts={this.state.contacts} {...props} />
         }} />
         <Route exact path="/contacts/add" render={(props) => {
           return <ContactAdd {...props} />
@@ -79,13 +79,16 @@ class ApplicationViews extends Component {
           return <MapContainer {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info" render={props => {
-          return <ContactInfo users={this.state.users} {...props} />
+          return <ContactInfo
+            contacts= {this.state.contacts}
+            users={this.state.users}
+            {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/edit" render={props => {
           return <ContactEdit {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info/contacts" render={props => {
-          return <ContactContactList {...props} />
+          return <ContactContactList users={this.state.users} {...props} />
         }} />
         <Route exact path="/phone/:phoneId(\d+)/edit" render={props => {
           return <EditContactPhone {...props} />
