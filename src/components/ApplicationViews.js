@@ -22,7 +22,7 @@ import raidLocationManager from "../modules/resourceManager/raidLocationManager"
 import contactManager from "../modules/resourceManager/contactManager"
 class ApplicationViews extends Component {
   state = {
-    users: [],
+    users: [{}],
     raidLocations: [],
     contacts: [],
     emails: [],
@@ -75,7 +75,7 @@ class ApplicationViews extends Component {
           return <Map {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info" render={props => {
-          return <ContactInfo {...props} />
+          return <ContactInfo users={this.state.users} {...props} />
         }} />
          <Route exact path="/contacts/:contactId(\d+)/edit" render={props => {
           return <ContactEdit {...props} />

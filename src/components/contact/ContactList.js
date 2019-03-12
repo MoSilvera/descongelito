@@ -12,7 +12,7 @@ export default class ContactList extends Component {
 
             <section className="contact list">
             this is the contact List page
-            <ContactCard key="1" />
+            <ContactCard key="1" users={this.props.users} {...this.props}/>
               </section>
         )
     }
