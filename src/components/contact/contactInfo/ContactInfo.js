@@ -22,7 +22,7 @@ export default class ContactInfo extends Component {
                 <button type="button"
                     className="btn btn-success justify-content-center"
                     onClick={() => {
-                        this.props.history.push("/contacts/1/edit")
+                        this.props.history.push("/contacts/1/info/contacts")
                     }
                     }>
                     Adress book
