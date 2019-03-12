@@ -22,35 +22,43 @@ import raidLocationManager from "../modules/resourceManager/raidLocationManager"
 import contactManager from "../modules/resourceManager/contactManager"
 class ApplicationViews extends Component {
   state = {
-    users: [],
-    raidLocations: [],
-    contacts: [],
-    emails: [],
-    cellNumbers: [],
-    carriers: [],
-    messages: [],
+    users: []
+    // raidLocations: [],
+    // contacts: [],
+    // emails: [],
+    // cellNumbers: [],
+    // carriers: [],
+    // messages: [],
 
   }
   componentDidMount() {
     const newState = {}
-    userManager.GETALL().then(users => {
-      newState.users = users
-    }).then(() => raidLocationManager.GETALL().then(raidLocations => {
-      newState.raidLocations = raidLocations
-    })).then(() => contactManager.GETALL().then(contacts => {
-      newState.contacts = contacts
-    })).then(() => emailManager.GETALL().then(emails => {
-      newState.emails = emails
-    })).then(() => cellNumberManager.GETALL().then(cellNumbers => {
-      newState.cellNumbers = cellNumbers
-    })).then(() => carrierManager.GETALL().then(carriers => {
-      newState.carriers = carriers
-    })).then(() => messageManager.GETALL().then(messages => {
-      newState.messages = messages
-    }))
-      .then(() => {
-        this.setState(newState)
-      })
+    // userManager.GETALL().then(users => {
+    //   newState.users = users
+    // })
+    // .then(() => 
+    // raidLocationManager.GETALL().then(raidLocations => {
+    //   newState.raidLocations = raidLocations
+    // })
+    // )
+    // .then(() => contactManager.GETALL().then(contacts => {
+    //   newState.contacts = contacts
+    // }))
+    // .then(() => emailManager.GETALL().then(emails => {
+    //   newState.emails = emails
+    // }))
+    // .then(() => cellNumberManager.GETALL().then(cellNumbers => {
+    //   newState.cellNumbers = cellNumbers
+    // }))
+    // .then(() => carrierManager.GETALL().then(carriers => {
+    //   newState.carriers = carriers
+    // }))
+    // .then(() => messageManager.GETALL().then(messages => {
+    //   newState.messages = messages
+    // }))
+    //   .then(() => {
+    //     this.setState(newState)
+    //   })
 
   }
   render() {
