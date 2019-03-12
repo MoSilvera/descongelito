@@ -9,8 +9,9 @@ export default class Landing extends Component {
 
         return (
 
-            <section className="news">
-              </section> 
+            <section className="landing">
+            this is the landing page
+              </section>
         )
     }
 }

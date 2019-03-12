@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Route } from "react-router-dom"
 import Map from "./map/Map"
 import Landing from "./home/Landing"
+import ContactEdit from "./contact/contactInfo/ContactEdit"
 import ContactList from "./contact/ContactList"
 import ContactInfo from "./contact/contactInfo/ContactInfo"
 import AddContactMessage from "./contact/contactInfo/contactMESSAGES/AddContactMessage"
@@ -17,7 +18,7 @@ import userManager from "../modules/resourceManager/userManager";
 import emailManager from "../modules/resourceManager/emailManager";
 import carrierManager from "../modules/resourceManager/carrierManager";
 import messageManager from "../modules/resourceManager/messageManager";
-import raidLocationsManager from "../modules/resourceManager/raidLocationManager"
+import raidLocationManager from "../modules/resourceManager/raidLocationManager"
 import contactManager from "../modules/resourceManager/contactManager"
 class ApplicationViews extends Component {
   state = {
@@ -34,7 +35,7 @@ class ApplicationViews extends Component {
     const newState = {}
     userManager.GETALL().then(users => {
       newState.users = users
-    }).then(() => raidLocationsManager.GETALL().then(raidLocations => {
+    }).then(() => raidLocationManager.GETALL().then(raidLocations => {
       newState.raidLocations = raidLocations
     })).then(() => contactManager.GETALL().then(contacts => {
       newState.contacts = contacts
