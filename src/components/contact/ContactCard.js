@@ -14,7 +14,7 @@ export default class ContactCard extends Component {
             <button type="button"
                     className="btn btn-success justify-content-center"
                     onClick={() => {
-                        this.props.history.push("/contacts/1/info")
+                        this.props.history.push("/contacts/3/info")
                     }
                 }>
                     Info
