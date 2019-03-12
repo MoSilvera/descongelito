@@ -4,6 +4,7 @@ import MapContainer from "./map/Map"
 import Landing from "./home/Landing"
 import ContactEdit from "./contact/contactInfo/ContactEdit"
 import ContactList from "./contact/ContactList"
+import ContactAdd from "./contact/ContactAdd"
 import ContactInfo from "./contact/contactInfo/ContactInfo"
 import AddContactMessage from "./contact/contactInfo/contactMESSAGES/AddContactMessage"
 import ContactMessageDetail from "./contact/contactInfo/contactMESSAGES/ContactMessageDetail"
@@ -71,29 +72,32 @@ class ApplicationViews extends Component {
         <Route exact path="/contacts" render={(props) => {
           return <ContactList {...props} />
         }} />
+        <Route exact path="/contacts/add" render={(props) => {
+          return <ContactAdd {...props} />
+        }} />
         <Route exact path="/map" render={(props) => {
           return <MapContainer {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info" render={props => {
           return <ContactInfo users={this.state.users} {...props} />
         }} />
-         <Route exact path="/contacts/:contactId(\d+)/edit" render={props => {
+        <Route exact path="/contacts/:contactId(\d+)/edit" render={props => {
           return <ContactEdit {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info/contacts" render={props => {
           return <ContactContactList {...props} />
         }} />
         <Route exact path="/phone/:phoneId(\d+)/edit" render={props => {
-            return <EditContactPhone {...props} />
-          }}
+          return <EditContactPhone {...props} />
+        }}
         />
-         <Route exact path="/email/:EmailId(\d+)/edit" render={props => {
-            return <EditContactEmail {...props} />
-          }}
+        <Route exact path="/email/:EmailId(\d+)/edit" render={props => {
+          return <EditContactEmail {...props} />
+        }}
         />
         <Route exact path="/contact/addInnerContact" render={props => {
-            return <AddContactContact {...props} />
-          }}
+          return <AddContactContact {...props} />
+        }}
         />
         <Route exact path="/contacts/:contactId(\d+)/info/messages" render={props => {
           return <ContactMessageList {...props} />
@@ -102,12 +106,12 @@ class ApplicationViews extends Component {
           return <ContactMessageDetail {...props} />
         }} />
         <Route exact path="/messages/:messageId(\d+)/edit" render={props => {
-            return <EditContactMessage {...props} />
-          }}
+          return <EditContactMessage {...props} />
+        }}
         />
         <Route exact path="/messages/:messageId(\d+)/add" render={props => {
-            return <AddContactMessage {...props}/>
-          }}
+          return <AddContactMessage {...props} />
+        }}
         />
 
       </React.Fragment>

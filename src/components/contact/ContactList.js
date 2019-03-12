@@ -12,6 +12,14 @@ export default class ContactList extends Component {
 
             <section className="contact list">
             this is the contact List page
+            <button type="button"
+                    className="btn btn-success justify-content-center"
+                    onClick={() => {
+                        this.props.history.push("/contacts/add")
+                    }
+                }>
+                    Add Contact
+                    </button>
             <ContactCard key="1" users={this.props.users} {...this.props}/>
               </section>
         )
