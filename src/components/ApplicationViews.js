@@ -13,22 +13,22 @@ import AddContactContact from "./contact/contactInfo/contactCONTACTS/AddContactC
 import ContactContactList from "./contact/contactInfo/contactCONTACTS/ContactContactList"
 import EditContactPhone from "./contact/contactInfo/contactCONTACTS/EditContactPhone"
 import EditContactEmail from "./contact/contactInfo/contactCONTACTS/EditContactEmail"
-import cellNumberManager from "../modules/resourceManager/cellNumberManager";
-import userManager from "../modules/resourceManager/userManager";
-import emailManager from "../modules/resourceManager/emailManager";
-import carrierManager from "../modules/resourceManager/carrierManager";
-import messageManager from "../modules/resourceManager/messageManager";
+import cellNumberManager from "../modules/resourceManager/cellNumberManager"
+import userManager from "../modules/resourceManager/userManager"
+import emailManager from "../modules/resourceManager/emailManager"
+import carrierManager from "../modules/resourceManager/carrierManager"
+import messageManager from "../modules/resourceManager/messageManager"
 import raidLocationManager from "../modules/resourceManager/raidLocationManager"
 import contactManager from "../modules/resourceManager/contactManager"
 class ApplicationViews extends Component {
   state = {
-    users: []
-    // raidLocations: [],
-    // contacts: [],
-    // emails: [],
-    // cellNumbers: [],
-    // carriers: [],
-    // messages: [],
+    users: [],
+    raidLocations: [],
+    contacts: [],
+    emails: [],
+    cellNumbers: [],
+    carriers: [],
+    messages: [],
 
   }
   componentDidMount() {
