@@ -8,6 +8,7 @@ export default class AddContactMessage extends Component {
         messageSubject: "",
         messageBody: "",
         emailId: "",
+        contactSelection: "",
         cellNumberId: "",
         contactId: "",
         userId: "",
@@ -20,18 +21,28 @@ export default class AddContactMessage extends Component {
         this.setState(stateToChange)
     }
 
+
     constructNewMessage = evt => {
         evt.preventDefault()
-      
-        const message = {
-            messageSubject: this.setState.messageSubject,
-            messageBody: this.setState.messageBody,
-            emailId: this.setState.emailId,
-            cellNumberId: this.setState.cellNumberId,
+        let message = {}
+        if (this.state.contactSelection.includes("@"))
+        {message = {
+            messageSubject: this.state.messageSubject,
+            messageBody: this.state.messageBody,
+            emailId: this.props.emails.find(email => email.email === this.state.contactSelection).id,
+            cellNumberId: "false",
             contactId: parseInt(this.props.match.params.contactId),
             userId: parseInt(sessionStorage.getItem("credentials"))
-        }
-
+        }}
+        else {message = {
+            messageSubject: this.state.messageSubject,
+            messageBody: this.state.messageBody,
+            emailId: "false",
+            cellNumberId: parseInt(this.state.contactSelection),
+            contactId: parseInt(this.props.match.params.contactId),
+            userId: parseInt(sessionStorage.getItem("credentials"))
+        }}
+console.log(message)
         this.props
             .addMessage(message)
             .then(() => this.props.history.push("/contacts"))
@@ -61,7 +72,7 @@ export default class AddContactMessage extends Component {
                             required
                             className="form-control"
                             onChange={this.handleFieldChange}
-                            id="Message Body"
+                            id="messageBody"
                             placeholder="What do you want to say?"
                         />
                     </div>
@@ -69,19 +80,19 @@ export default class AddContactMessage extends Component {
                         <label htmlFor="contact">Assign to Contact</label>
                         <select
                             defaultValue=""
-                            name="contact"
+                            name="contactSelection"
                             id="contactSelection"
                             onChange={this.handleFieldChange}
                         >
-                
+                            <option>Pick a Contact</option>
                             {this.props.emails.filter(email => email.contactId === parseInt(this.props.match.params.contactId))
                             .map(e =>
-                                <option key={e.id} id={e.id} value={e.id}>
+                                <option className="email" key={e.id} id={e.email} value={e.email}>
                                     {e.email}
                                 </option>
                             )}
                             {this.props.cellNumbers.filter(cellNumber => cellNumber.contactId === parseInt(this.props.match.params.contactId))
-                            .map(cellNumber => <option key={cellNumber.id} id={cellNumber.id} value={cellNumber.id}>
+                            .map(cellNumber => <option className="cell" key={cellNumber.id} id={cellNumber.id} value={cellNumber.id}>
                                 {cellNumber.phoneNumber}
                             </option> )}
                         </select>

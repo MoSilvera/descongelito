@@ -143,7 +143,7 @@ class ApplicationViews extends Component {
             contacts={this.state.contacts}
             emails={this.state.emails}
             cellNumbers={this.state.cellNumbers}
-            addContat={this.addContact}
+            addMessage={this.addMessage}
 
             {...props} />
         }}
