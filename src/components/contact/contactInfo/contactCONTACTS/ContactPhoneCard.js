@@ -6,8 +6,7 @@ export default class ContactPhoneCard extends Component {
 
 
     render() {
-        let carrier = () => {this.props.carriers.filter(carrier => this.props.match.params === carrier.id)
-        .map(carrier => carrier.name )}
+
 
         return (
 
