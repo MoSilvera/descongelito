@@ -118,7 +118,9 @@ class ApplicationViews extends Component {
         }}
         />
         <Route exact path="/contacts/:contactId(\d+)/info/messages" render={props => {
-          return <ContactMessageList {...props} />
+          return <ContactMessageList 
+            messages={this.state.messages} 
+            {...props} />
         }} />
         <Route exact path="/message/:messageId(\d+)" render={props => {
           return <ContactMessageDetail {...props} />
