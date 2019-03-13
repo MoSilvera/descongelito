@@ -88,7 +88,12 @@ class ApplicationViews extends Component {
           return <ContactEdit {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info/contacts" render={props => {
-          return <ContactContactList users={this.state.users} {...props} />
+          return <ContactContactList
+            contacts={this.state.contacts}
+            emails={this.state.emails}
+            cellNumbers={this.state.cellNumbers}
+            carriers={this.state.carriers}
+            {...props} />
         }} />
         <Route exact path="/phone/:phoneId(\d+)/edit" render={props => {
           return <EditContactPhone {...props} />
