@@ -29,7 +29,7 @@ export default class ContactAdd extends Component {
 
               this.props
                 .addContact(contact)
-                .then(() => this.props.history.push("/articles"))
+                .then(() => this.props.history.push("/contacts"))
 
           }
 
@@ -45,7 +45,7 @@ export default class ContactAdd extends Component {
                       required
                       className="form-control"
                       onChange={this.handleFieldChange}
-                      id="ContactFirstName"
+                      id="contactFirstName"
                       placeholder="First Name"
                     />
                   </div>
@@ -62,7 +62,7 @@ export default class ContactAdd extends Component {
                     </div>
                   <button
                     type="submit"
-                    onClick={this.constructNewArticle}
+                    onClick={this.constructNewContact}
                     className="btn btn-primary"
                   >
                     Submit

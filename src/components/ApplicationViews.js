@@ -32,6 +32,14 @@ class ApplicationViews extends Component {
     messages: [],
 
   }
+  addContact = contact =>
+    contactManager.POST(contact)
+      .then(() => contactManager.GETALL())
+      .then(contacts =>
+        this.setState({
+          contacts: contacts
+        })
+      );
   componentDidMount() {
     const newState = {}
     userManager.GETALL().then(users => {
@@ -73,7 +81,9 @@ class ApplicationViews extends Component {
           return <ContactList contacts={this.state.contacts} {...props} />
         }} />
         <Route exact path="/contacts/add" render={(props) => {
-          return <ContactAdd {...props} />
+          return <ContactAdd 
+            addContact={this.addContact}
+            {...props} />
         }} />
         <Route exact path="/map" render={(props) => {
           return <MapContainer {...props} />
