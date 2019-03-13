@@ -39,6 +39,14 @@ class ApplicationViews extends Component {
         this.setState({
           contacts: contacts
         })
+      )
+      addMessage = message =>
+    messageManager.POST(message)
+      .then(() => messageManager.GETALL())
+      .then(messages =>
+        this.setState({
+          messages: messages
+        })
       );
   componentDidMount() {
     const newState = {}
@@ -118,8 +126,9 @@ class ApplicationViews extends Component {
         }}
         />
         <Route exact path="/contacts/:contactId(\d+)/info/messages" render={props => {
-          return <ContactMessageList 
-            messages={this.state.messages} 
+          return <ContactMessageList
+            messages={this.state.messages}
+            contacts={this.state.contacts}
             {...props} />
         }} />
         <Route exact path="/message/:messageId(\d+)" render={props => {
@@ -129,8 +138,14 @@ class ApplicationViews extends Component {
           return <EditContactMessage {...props} />
         }}
         />
-        <Route exact path="/messages/:messageId(\d+)/add" render={props => {
-          return <AddContactMessage {...props} />
+        <Route exact path="/messages/:contactId(\d+)/add" render={props => {
+          return <AddContactMessage
+            contacts={this.state.contacts}
+            emails={this.state.emails}
+            cellNumbers={this.state.cellNumbers}
+            addContat={this.addContact}
+
+            {...props} />
         }}
         />
 
