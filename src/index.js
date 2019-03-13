@@ -1,13 +1,13 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import "./index.css"
-import Nutshell from "./Descongelito"
+import Descongelito from "./Descongelito"
 import * as serviceWorker from "./serviceWorker"
 import { BrowserRouter as Router } from "react-router-dom"
 
 ReactDOM.render(
   <Router>
-    <Nutshell />
+    <Descongelito />
   </Router>,
   document.getElementById("root")
 )
