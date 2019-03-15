@@ -54,7 +54,6 @@ export default class EditContactMessage extends Component {
             userId: this.state.userId,
             id: this.state.id
         }}
-    
 
         this.props.updateMessage(editedMessage)
             .then(() => this.toggle())
@@ -65,7 +64,7 @@ export default class EditContactMessage extends Component {
     componentDidMount() {
         messageManager.GET(this.props.messageId)
             .then(message => {
-                console.log(message)
+
                 this.setState({
                     messageSubject: message.messageSubject,
                     messageBody: message.messageBody,
@@ -77,7 +76,7 @@ export default class EditContactMessage extends Component {
                 });
             });
     }
-    
+
 
     render() {
 
@@ -138,13 +137,7 @@ export default class EditContactMessage extends Component {
                             </option> )}
                                         </select>
                                     </div>
-                                    <button
-                                        type="submit"
-                                        onClick={this.constructNewMessage}
-                                        className="btn btn-primary"
-                                    >
-                                        Submit
-              </button>
+
                                 </form>
                             </React.Fragment>
 

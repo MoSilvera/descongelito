@@ -19,7 +19,7 @@ class Nav extends Component {
         </ul>
         <button
         type="button"
-        >❄️</button>
+        ><span role="img" aria-label="snowflake">❄️</span></button>
         <button
           type="button"
           className="btn btn-outline-info"

@@ -9,11 +9,8 @@ import ContactInfo from "./contact/contactInfo/ContactInfo"
 import AddContactMessage from "./contact/contactInfo/contactMESSAGES/AddContactMessage"
 import ContactMessageDetail from "./contact/contactInfo/contactMESSAGES/ContactMessageDetail"
 import ContactMessageList from "./contact/contactInfo/contactMESSAGES/ContactMessageList"
-import EditContactMessage from "./contact/contactInfo/contactMESSAGES/EditContactMessage"
 import AddContactContact from "./contact/contactInfo/contactCONTACTS/AddContactContact"
 import ContactContactList from "./contact/contactInfo/contactCONTACTS/ContactContactList"
-import EditContactPhone from "./contact/contactInfo/contactCONTACTS/EditContactPhone"
-import EditContactEmail from "./contact/contactInfo/contactCONTACTS/EditContactEmail"
 import cellNumberManager from "../modules/resourceManager/cellNumberManager"
 import userManager from "../modules/resourceManager/userManager"
 import emailManager from "../modules/resourceManager/emailManager"
@@ -48,7 +45,7 @@ class ApplicationViews extends Component {
           .then(contacts => this.setState({ contacts: contacts }))
         }
           else{console.log("else bitch")}
-          
+
 
       }
       updateContact = (editedContactObject) => {
@@ -89,12 +86,30 @@ class ApplicationViews extends Component {
           .then(emails => this.setState({ emails: emails }))
 
       }
+      updateEmail = (editedEmailObject) => {
+        return emailManager.PUT(editedEmailObject)
+          .then(() => emailManager.GETALL())
+          .then(emails=> {
+            this.setState({
+             emails: emails
+            })
+          });
+      };
       deleteCellNumber = (id) => {
         return cellNumberManager.DELETE(id)
           .then(() => cellNumberManager.GETALL())
           .then(cellNumbers => this.setState({ cellNumbers: cellNumbers }))
 
       }
+      updateCellNumber = (editedCellNumberObject) => {
+        return cellNumberManager.PUT(editedCellNumberObject)
+          .then(() => cellNumberManager.GETALL())
+          .then(cellNumbers=> {
+            this.setState({
+             cellNumbers: cellNumbers
+            })
+          });
+      };
   componentDidMount() {
     const newState = {}
     userManager.GETALL().then(users => {
@@ -162,16 +177,11 @@ class ApplicationViews extends Component {
             carriers={this.state.carriers}
             deleteEmail={this.deleteEmail}
             deleteCellNumber={this.deleteCellNumber}
+            updateEmail={this.updateEmail}
+            updateCellNumber={this.updateCellNumber}
             {...props} />
         }} />
-        <Route exact path="/phone/:phoneId(\d+)/edit" render={props => {
-          return <EditContactPhone {...props} />
-        }}
-        />
-        <Route exact path="/email/:EmailId(\d+)/edit" render={props => {
-          return <EditContactEmail {...props} />
-        }}
-        />
+
         <Route exact path="/contact/addInnerContact" render={props => {
           return <AddContactContact {...props} />
         }}

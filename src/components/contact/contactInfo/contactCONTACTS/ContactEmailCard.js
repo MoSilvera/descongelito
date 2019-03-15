@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import EditContactEmail from "./EditContactEmail"
 
 
 
@@ -11,17 +12,11 @@ export default class ContactEmailCard extends Component {
 
             <section className="contactCard">
             { this.props.emails.filter( email => email.contactId === parseInt(this.props.match.params.contactId))
-            .map(email => 
+            .map(email =>
             <div>
             <h5>{email.email}</h5>
-               <span><button type="button"
-                className="btn btn-success justify-content-center"
-                onClick={() => {
-                    this.props.history.push(`/email/${email.id}/edit`)
-                }
-                }>
-                edit
-             </button>
+             <span>
+            <EditContactEmail emailId={email.id} updateEmail={this.props.updateEmail} />
              <button
                                 onClick={() => this.props.deleteEmail(email.id)}
                                 className="btn btn-danger">Delete</button>

@@ -26,6 +26,7 @@ export default class ContactContactList extends Component {
                 <ContactEmailCard
                     emails={this.props.emails}
                     deleteEmail={this.props.deleteEmail}
+                    updateEmail={this.props.updateEmail}
                     {...this.props} />
                 <hr></hr>
 
@@ -34,6 +35,8 @@ export default class ContactContactList extends Component {
                     carriers={this.props.carriers}
                     contacts={this.props.contacts}
                     deleteCellNumber={this.props.deleteCellNumber}
+                    updateCellNumber={this.props.updateCellNumber}
+
                     {...this.props} />
             </section>
         )
