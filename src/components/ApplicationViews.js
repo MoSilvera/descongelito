@@ -41,9 +41,14 @@ class ApplicationViews extends Component {
         })
       )
       deleteContact = (id) => {
-        return contactManager.DELETE(id)
+        let check = window.confirm("Are you sure you want to delete this contact?")
+          if (check) {
+          return contactManager.DELETE(id)
           .then(() => contactManager.GETALL())
           .then(contacts => this.setState({ contacts: contacts }))
+        }
+          else{console.log("else bitch")}
+          
 
       }
       updateContact = (editedContactObject) => {
@@ -69,6 +74,15 @@ class ApplicationViews extends Component {
           .then(messages => this.setState({ messages: messages }))
 
       }
+      updateMessage = (editedMessageObject) => {
+        return messageManager.PUT(editedMessageObject)
+          .then(() => messageManager.GETALL())
+          .then(messages=> {
+            this.setState({
+             messages: messages
+            })
+          });
+      };
       deleteEmail = (id) => {
         return emailManager.DELETE(id)
           .then(() => emailManager.GETALL())
@@ -167,15 +181,15 @@ class ApplicationViews extends Component {
             messages={this.state.messages}
             contacts={this.state.contacts}
             deleteMessage={this.deleteMessage}
+            emails={this.state.emails}
+            cellNumbers={this.state.cellNumbers}
+            updateMessage={this.updateMessage}
             {...props} />
         }} />
         <Route exact path="/message/:messageId(\d+)" render={props => {
           return <ContactMessageDetail {...props} />
         }} />
-        <Route exact path="/messages/:messageId(\d+)/edit" render={props => {
-          return <EditContactMessage {...props} />
-        }}
-        />
+
         <Route exact path="/messages/:contactId(\d+)/add" render={props => {
           return <AddContactMessage
             contacts={this.state.contacts}

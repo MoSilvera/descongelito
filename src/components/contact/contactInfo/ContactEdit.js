@@ -1,12 +1,16 @@
-
-import React from 'react';
+import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import contactManager from "../../../modules/resourceManager/contactManager"
 
-let newFriendShip = {}
-class ContactEdit extends React.Component {
+
+export default class ContactEdit extends Component {
 
     state = {
         modal: false,
+        contactFirstName: "",
+        contactLastName: "",
+        id: "",
+        userId: "",
 
     }
 
@@ -16,71 +20,83 @@ class ContactEdit extends React.Component {
         }));
     }
 
-
+  
 
     handleFieldChange = evt => {
-        // const stateToChange = {};
-        newFriendShip["friend"] = evt.target.value;
-        // this.setState(stateToChange);
-    };
-    NewFriend = evt => {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }
+    updateExistingContact = evt => {
 
-        newFriendShip = {
-            userId: Number(sessionStorage.getItem("credentials")),
-            friend: Number(document.querySelector("#friendId").value),
+        const editedContact = {
+            id: this.state.id,
+            contactFirstName: this.state.contactFirstName,
+            contactLastName: this.state.contactLastName,
+            userId: this.state.userId
         };
 
-        let previousFriend = true
-        let addYourself = true
-        if (newFriendShip.userId === newFriendShip.friend) {
-            alert("You can't add yourself!")
+        this.props.updateContact(editedContact)
+            .then(() => this.props.history.push(`/contacts/${this.props.match.params.contactId}/info`)
+            )
+        this.toggle()
 
+    }
 
-        } else {
-            addYourself = false
-        }
-        let userIds = this.props.friendships.map(user => user.friend)
-        
-        if (userIds.includes(newFriendShip.friend)) {
-            alert("Already your friend!")
-        } else {
-            previousFriend = false
-        }
-
-        if (previousFriend === false && addYourself === false) {
-            this.props.addFriend(newFriendShip).then(() => this.toggle())
-        }
-    };
+    componentDidMount() {
+        contactManager.GET(this.props.match.params.contactId)
+            .then(contact => {
+                this.setState({
+                    contactFirstName: contact.contactFirstName,
+                    contactLastName: contact.contactLastName,
+                    userId: parseInt(sessionStorage.getItem("credentials")),
+                    id: contact.id
+                });
+            });
+    }
 
     render() {
-        return (
-            <div>
-                <Button color="info" onClick={this.toggle}>Find A Friend</Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-                    <ModalBody>
-                    <div>
-                    <label htmlFor="messageSubject">Subject</label>
-                        <input
-                            type="text"
-                            required
-                            className="form-control"
-                            onChange={this.handleFieldChange}
-                            id="messageSubject"
-                            placeholder="Subject"
-                        />
-                    </div>
 
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.togle}>Add Friend!</Button>
-                        
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                    </ModalFooter>
-                </Modal>
-            </div>
-        );
+
+
+        return (
+            <React.Fragment>
+                    <Button color="info" onClick={this.toggle}>Edit Contact</Button>
+                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                        <ModalHeader toggle={this.toggle}>Change Contact Name</ModalHeader>
+                        <ModalBody>
+                            <div>
+
+                                <input
+                                    type="text"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    id="contactFirstName"
+                                    placeholder="First Name"
+                                    value={this.state.contactFirstName}
+                                />
+
+                                <input
+                                    type="text"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    id="contactLastName"
+                                    placeholder="Last Name"
+                                    value={this.state.contactLastName}
+                                />
+                            </div>
+
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={this.updateExistingContact}>Save Change</Button>
+
+                            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        </ModalFooter>
+                    </Modal>
+                
+            </React.Fragment>
+        )
     }
 }
-
-export default ContactEdit;
