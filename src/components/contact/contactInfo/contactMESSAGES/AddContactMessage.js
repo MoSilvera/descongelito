@@ -7,9 +7,9 @@ export default class AddContactMessage extends Component {
     state = {
         messageSubject: "",
         messageBody: "",
-        emailId: "",
+        email: "",
         contactSelection: "",
-        cellNumberId: "",
+        cellNumber: "",
         contactId: "",
         userId: "",
     }
@@ -29,23 +29,23 @@ export default class AddContactMessage extends Component {
         {message = {
             messageSubject: this.state.messageSubject,
             messageBody: this.state.messageBody,
-            emailId: this.props.emails.find(email => email.email === this.state.contactSelection).id,
-            cellNumberId: "false",
+            email: this.props.emails.find(email => email.email === this.state.contactSelection).id,
+            cellNumber: "false",
             contactId: parseInt(this.props.match.params.contactId),
             userId: parseInt(sessionStorage.getItem("credentials"))
         }}
         else {message = {
             messageSubject: this.state.messageSubject,
             messageBody: this.state.messageBody,
-            emailId: "false",
-            cellNumberId: parseInt(this.state.contactSelection),
+            email: "false",
+            cellNumber: parseInt(this.state.contactSelection),
             contactId: parseInt(this.props.match.params.contactId),
             userId: parseInt(sessionStorage.getItem("credentials"))
         }}
-console.log(message)
+
         this.props
             .addMessage(message)
-            .then(() => this.props.history.push("/contacts"))
+            .then(() => this.props.history.push(`/contacts/${this.props.match.params.contactId}/info/messages`))
 
     }
 

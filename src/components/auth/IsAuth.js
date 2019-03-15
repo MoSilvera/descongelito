@@ -7,7 +7,7 @@ class IsAuth extends Component {
     return (
       <React.Fragment>
         {this.props.isAuthenticated() ? (
-          <UserAccessLayer {...this.props} />
+          <UserAccessLayer {...this.props}/>
         ) : (
           <Login {...this.props} />
         )}

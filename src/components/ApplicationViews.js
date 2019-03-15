@@ -40,6 +40,21 @@ class ApplicationViews extends Component {
           contacts: contacts
         })
       )
+      deleteContact = (id) => {
+        return contactManager.DELETE(id)
+          .then(() => contactManager.GETALL())
+          .then(contacts => this.setState({ contacts: contacts }))
+
+      }
+      updateContact = (editedContactObject) => {
+        return contactManager.PUT(editedContactObject)
+          .then(() => contactManager.GETALL())
+          .then(contacts => {
+            this.setState({
+              contacts: contacts
+            })
+          });
+      };
       addMessage = message =>
     messageManager.POST(message)
       .then(() => messageManager.GETALL())
@@ -47,7 +62,25 @@ class ApplicationViews extends Component {
         this.setState({
           messages: messages
         })
-      );
+      )
+      deleteMessage = (id) => {
+        return messageManager.DELETE(id)
+          .then(() => messageManager.GETALL())
+          .then(messages => this.setState({ messages: messages }))
+
+      }
+      deleteEmail = (id) => {
+        return emailManager.DELETE(id)
+          .then(() => emailManager.GETALL())
+          .then(emails => this.setState({ emails: emails }))
+
+      }
+      deleteCellNumber = (id) => {
+        return cellNumberManager.DELETE(id)
+          .then(() => cellNumberManager.GETALL())
+          .then(cellNumbers => this.setState({ cellNumbers: cellNumbers }))
+
+      }
   componentDidMount() {
     const newState = {}
     userManager.GETALL().then(users => {
@@ -89,7 +122,7 @@ class ApplicationViews extends Component {
           return <ContactList contacts={this.state.contacts} {...props} />
         }} />
         <Route exact path="/contacts/add" render={(props) => {
-          return <ContactAdd 
+          return <ContactAdd
             addContact={this.addContact}
             {...props} />
         }} />
@@ -100,10 +133,12 @@ class ApplicationViews extends Component {
           return <ContactInfo
             contacts= {this.state.contacts}
             users={this.state.users}
+            deleteContact={this.deleteContact}
+            updateContact={this.updateContact}
             {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/edit" render={props => {
-          return <ContactEdit {...props} />
+          return <ContactEdit contact={this.state.contacts}{...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info/contacts" render={props => {
           return <ContactContactList
@@ -111,6 +146,8 @@ class ApplicationViews extends Component {
             emails={this.state.emails}
             cellNumbers={this.state.cellNumbers}
             carriers={this.state.carriers}
+            deleteEmail={this.deleteEmail}
+            deleteCellNumber={this.deleteCellNumber}
             {...props} />
         }} />
         <Route exact path="/phone/:phoneId(\d+)/edit" render={props => {
@@ -129,6 +166,7 @@ class ApplicationViews extends Component {
           return <ContactMessageList
             messages={this.state.messages}
             contacts={this.state.contacts}
+            deleteMessage={this.deleteMessage}
             {...props} />
         }} />
         <Route exact path="/message/:messageId(\d+)" render={props => {

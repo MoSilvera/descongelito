@@ -23,7 +23,10 @@ export default class ContactMessageList extends Component {
                                 onClick={() => {
                                     this.props.history.push(`/messages/${message.id}/edit`)
                                 }
-                                }>Edit</button> </div>
+                                }>Edit</button>
+                                <button
+                                onClick={() => this.props.deleteMessage(message.id)}
+                                className="btn btn-danger">Delete</button> </div>
                     })}
             </section>
         )

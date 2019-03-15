@@ -23,6 +23,9 @@ export default class ContactPhoneCard extends Component {
                 }>
                 edit
              </button>
+             <button
+                                onClick={() => this.props.deleteCellNumber(cellNumber.id)}
+                                className="btn btn-danger">Delete</button>
              </span>
              </div>) }
             </section>

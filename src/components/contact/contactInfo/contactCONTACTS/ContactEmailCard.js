@@ -22,7 +22,10 @@ export default class ContactEmailCard extends Component {
                 }>
                 edit
              </button>
-             </span> 
+             <button
+                                onClick={() => this.props.deleteEmail(email.id)}
+                                className="btn btn-danger">Delete</button>
+             </span>
              </div>) }
             </section>
         )
