@@ -9,7 +9,6 @@ import ContactInfo from "./contact/contactInfo/ContactInfo"
 import AddContactMessage from "./contact/contactInfo/contactMESSAGES/AddContactMessage"
 import ContactMessageDetail from "./contact/contactInfo/contactMESSAGES/ContactMessageDetail"
 import ContactMessageList from "./contact/contactInfo/contactMESSAGES/ContactMessageList"
-import AddContactContact from "./contact/contactInfo/contactCONTACTS/AddContactContact"
 import ContactContactList from "./contact/contactInfo/contactCONTACTS/ContactContactList"
 import cellNumberManager from "../modules/resourceManager/cellNumberManager"
 import userManager from "../modules/resourceManager/userManager"
@@ -80,6 +79,14 @@ class ApplicationViews extends Component {
             })
           });
       };
+      addEmail = email =>
+        emailManager.POST(email)
+        .then (() => emailManager.GETALL())
+        .then(emails =>
+          this.setState({
+            emails: emails
+          }))
+
       deleteEmail = (id) => {
         return emailManager.DELETE(id)
           .then(() => emailManager.GETALL())
@@ -95,6 +102,14 @@ class ApplicationViews extends Component {
             })
           });
       };
+      addPhone = phone =>
+        cellNumberManager.POST(phone)
+        .then(() => cellNumberManager.GETALL())
+        .then(cellNumbers =>
+          this.setState ({
+            cellNumbers: cellNumbers
+          }))
+
       deleteCellNumber = (id) => {
         return cellNumberManager.DELETE(id)
           .then(() => cellNumberManager.GETALL())
@@ -179,13 +194,11 @@ class ApplicationViews extends Component {
             deleteCellNumber={this.deleteCellNumber}
             updateEmail={this.updateEmail}
             updateCellNumber={this.updateCellNumber}
+            addEmail={this.addEmail}
+            addPhone={this.addPhone}
             {...props} />
         }} />
 
-        <Route exact path="/contact/addInnerContact" render={props => {
-          return <AddContactContact {...props} />
-        }}
-        />
         <Route exact path="/contacts/:contactId(\d+)/info/messages" render={props => {
           return <ContactMessageList
             messages={this.state.messages}

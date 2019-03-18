@@ -13,7 +13,7 @@ export default class ContactEmailCard extends Component {
             <section className="contactCard">
             { this.props.emails.filter( email => email.contactId === parseInt(this.props.match.params.contactId))
             .map(email =>
-            <div>
+            <div key={email.id}>
             <h5>{email.email}</h5>
              <span>
             <EditContactEmail emailId={email.id} updateEmail={this.props.updateEmail} />

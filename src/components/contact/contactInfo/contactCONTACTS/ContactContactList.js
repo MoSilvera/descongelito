@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ContactEmailCard from "./ContactEmailCard"
 import ContactPhoneCard from "./ContactPhoneCard"
-
+import AddContactEmail from "./AddContactEmail"
+import AddContactPhone from "./AddContactPhone"
 
 
 export default class ContactContactList extends Component {
@@ -16,20 +17,21 @@ export default class ContactContactList extends Component {
 
             <section className="contactContactList">
                 <div>{oneContact()}</div>
-                <button
-                    type="button"
-                    className="btn btn-success"
-                    onClick={() => {
-                        this.props.history.push(`/contact/addInnerContact`)
-                    }} >Add email/phone</button>
+               <AddContactEmail 
+                addEmail={this.props.addEmail} 
+                {...this.props} />
 
                 <ContactEmailCard
+
                     emails={this.props.emails}
                     deleteEmail={this.props.deleteEmail}
                     updateEmail={this.props.updateEmail}
                     {...this.props} />
                 <hr></hr>
-
+                <AddContactPhone
+                    addPhone={this.props.addPhone}
+                    carriers={this.props.carriers}
+                    {...this.props}/>
                 <ContactPhoneCard
                     cellNumbers={this.props.cellNumbers}
                     carriers={this.props.carriers}
