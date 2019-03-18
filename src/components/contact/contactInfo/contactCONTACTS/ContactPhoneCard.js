@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import EditContactPhone from './EditContactPhone';
 
 
 
@@ -7,22 +8,17 @@ export default class ContactPhoneCard extends Component {
 
     render() {
 
-
         return (
 
             <section className="contactCard">
             { this.props.cellNumbers.filter(cellNumber => cellNumber.contactId === parseInt(this.props.match.params.contactId))
             .map(cellNumber =>
-            <div>
+            <div key={cellNumber.id}>
             <h5>{cellNumber.phoneNumber}</h5>
-               <span><button type="button"
-                className="btn btn-success justify-content-center"
-                onClick={() => {
-                    this.props.history.push(`/phone/1/edit`)
-                }
-                }>
-                edit
-             </button>
+               <span><EditContactPhone  cellNumberId={cellNumber.id} updateCellNumber={this.props.updateCellNumber}/>
+             <button
+                                onClick={() => this.props.deleteCellNumber(cellNumber.id)}
+                                className="btn btn-danger">Delete</button>
              </span>
              </div>) }
             </section>

@@ -9,11 +9,7 @@ import ContactInfo from "./contact/contactInfo/ContactInfo"
 import AddContactMessage from "./contact/contactInfo/contactMESSAGES/AddContactMessage"
 import ContactMessageDetail from "./contact/contactInfo/contactMESSAGES/ContactMessageDetail"
 import ContactMessageList from "./contact/contactInfo/contactMESSAGES/ContactMessageList"
-import EditContactMessage from "./contact/contactInfo/contactMESSAGES/EditContactMessage"
-import AddContactContact from "./contact/contactInfo/contactCONTACTS/AddContactContact"
 import ContactContactList from "./contact/contactInfo/contactCONTACTS/ContactContactList"
-import EditContactPhone from "./contact/contactInfo/contactCONTACTS/EditContactPhone"
-import EditContactEmail from "./contact/contactInfo/contactCONTACTS/EditContactEmail"
 import cellNumberManager from "../modules/resourceManager/cellNumberManager"
 import userManager from "../modules/resourceManager/userManager"
 import emailManager from "../modules/resourceManager/emailManager"
@@ -39,7 +35,96 @@ class ApplicationViews extends Component {
         this.setState({
           contacts: contacts
         })
-      );
+      )
+      deleteContact = (id) => {
+        let check = window.confirm("Are you sure you want to delete this contact?")
+          if (check) {
+          return contactManager.DELETE(id)
+          .then(() => contactManager.GETALL())
+          .then(contacts => this.setState({ contacts: contacts }))
+        }
+          else{console.log("else bitch")}
+
+
+      }
+      updateContact = (editedContactObject) => {
+        return contactManager.PUT(editedContactObject)
+          .then(() => contactManager.GETALL())
+          .then(contacts => {
+            this.setState({
+              contacts: contacts
+            })
+          });
+      };
+      addMessage = message =>
+    messageManager.POST(message)
+      .then(() => messageManager.GETALL())
+      .then(messages =>
+        this.setState({
+          messages: messages
+        })
+      )
+      deleteMessage = (id) => {
+        return messageManager.DELETE(id)
+          .then(() => messageManager.GETALL())
+          .then(messages => this.setState({ messages: messages }))
+
+      }
+      updateMessage = (editedMessageObject) => {
+        return messageManager.PUT(editedMessageObject)
+          .then(() => messageManager.GETALL())
+          .then(messages=> {
+            this.setState({
+             messages: messages
+            })
+          });
+      };
+      addEmail = email =>
+        emailManager.POST(email)
+        .then (() => emailManager.GETALL())
+        .then(emails =>
+          this.setState({
+            emails: emails
+          }))
+
+      deleteEmail = (id) => {
+        return emailManager.DELETE(id)
+          .then(() => emailManager.GETALL())
+          .then(emails => this.setState({ emails: emails }))
+
+      }
+      updateEmail = (editedEmailObject) => {
+        return emailManager.PUT(editedEmailObject)
+          .then(() => emailManager.GETALL())
+          .then(emails=> {
+            this.setState({
+             emails: emails
+            })
+          });
+      };
+      addPhone = phone =>
+        cellNumberManager.POST(phone)
+        .then(() => cellNumberManager.GETALL())
+        .then(cellNumbers =>
+          this.setState ({
+            cellNumbers: cellNumbers
+          }))
+
+      deleteCellNumber = (id) => {
+        return cellNumberManager.DELETE(id)
+          .then(() => cellNumberManager.GETALL())
+          .then(cellNumbers => this.setState({ cellNumbers: cellNumbers }))
+
+      }
+      updateCellNumber = (editedCellNumberObject) => {
+        return cellNumberManager.PUT(editedCellNumberObject)
+          .then(() => cellNumberManager.GETALL())
+          .then(cellNumbers=> {
+            this.setState({
+             cellNumbers: cellNumbers
+            })
+          });
+      };
   componentDidMount() {
     const newState = {}
     userManager.GETALL().then(users => {
@@ -81,7 +166,7 @@ class ApplicationViews extends Component {
           return <ContactList contacts={this.state.contacts} {...props} />
         }} />
         <Route exact path="/contacts/add" render={(props) => {
-          return <ContactAdd 
+          return <ContactAdd
             addContact={this.addContact}
             {...props} />
         }} />
@@ -92,10 +177,12 @@ class ApplicationViews extends Component {
           return <ContactInfo
             contacts= {this.state.contacts}
             users={this.state.users}
+            deleteContact={this.deleteContact}
+            updateContact={this.updateContact}
             {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/edit" render={props => {
-          return <ContactEdit {...props} />
+          return <ContactEdit contact={this.state.contacts}{...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info/contacts" render={props => {
           return <ContactContactList
@@ -103,32 +190,37 @@ class ApplicationViews extends Component {
             emails={this.state.emails}
             cellNumbers={this.state.cellNumbers}
             carriers={this.state.carriers}
+            deleteEmail={this.deleteEmail}
+            deleteCellNumber={this.deleteCellNumber}
+            updateEmail={this.updateEmail}
+            updateCellNumber={this.updateCellNumber}
+            addEmail={this.addEmail}
+            addPhone={this.addPhone}
             {...props} />
         }} />
-        <Route exact path="/phone/:phoneId(\d+)/edit" render={props => {
-          return <EditContactPhone {...props} />
-        }}
-        />
-        <Route exact path="/email/:EmailId(\d+)/edit" render={props => {
-          return <EditContactEmail {...props} />
-        }}
-        />
-        <Route exact path="/contact/addInnerContact" render={props => {
-          return <AddContactContact {...props} />
-        }}
-        />
+
         <Route exact path="/contacts/:contactId(\d+)/info/messages" render={props => {
-          return <ContactMessageList {...props} />
+          return <ContactMessageList
+            messages={this.state.messages}
+            contacts={this.state.contacts}
+            deleteMessage={this.deleteMessage}
+            emails={this.state.emails}
+            cellNumbers={this.state.cellNumbers}
+            updateMessage={this.updateMessage}
+            {...props} />
         }} />
         <Route exact path="/message/:messageId(\d+)" render={props => {
           return <ContactMessageDetail {...props} />
         }} />
-        <Route exact path="/messages/:messageId(\d+)/edit" render={props => {
-          return <EditContactMessage {...props} />
-        }}
-        />
-        <Route exact path="/messages/:messageId(\d+)/add" render={props => {
-          return <AddContactMessage {...props} />
+
+        <Route exact path="/messages/:contactId(\d+)/add" render={props => {
+          return <AddContactMessage
+            contacts={this.state.contacts}
+            emails={this.state.emails}
+            cellNumbers={this.state.cellNumbers}
+            addMessage={this.addMessage}
+
+            {...props} />
         }}
         />
 

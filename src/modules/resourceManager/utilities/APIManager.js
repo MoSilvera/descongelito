@@ -8,7 +8,7 @@ export default Object.create(null, {
         }
     },
     GETALL: {
-        value: function () { 
+        value: function () {
             return fetch(`${Settings.remoteURL}/${this.array}`)
                 .then(r => r.json())
         }

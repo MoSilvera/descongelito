@@ -1,29 +1,24 @@
 import React, { Component } from 'react'
 import "./contactInfo.css"
-
+import ContactEdit from "./ContactEdit"
 
 export default class ContactInfo extends Component {
 
 
     render() {
 
-        let oneContact = () => {return this.props.contacts.filter(contact => (contact.id === parseInt(this.props.match.params.contactId)))
-            .map(contact => {return <h1 key={contact.id}>{contact.contactFirstName} {contact.contactLastName}</h1>})}
+        let oneContact = () => {
+            return this.props.contacts.filter(contact => (contact.id === parseInt(this.props.match.params.contactId)))
+                .map(contact => { return <React.Fragment key={contact.id}>{contact.contactFirstName} {contact.contactLastName}</React.Fragment> })
+        }
 
-        let contactID = () => {return this.props.contacts.filter(contact => (contact.id === parseInt(this.props.match.params.contactId)))}
+
 
         return (
 
             <section className="contactInfo">
-                <div>{oneContact()} </div>
-            <button type="button"
-                    className="btn btn-success justify-content-center"
-                    onClick={() => {
-                        this.props.history.push("/contacts//edit")
-                    }
-                    }>
-                    Edit
-                    </button>
+                <h1>{oneContact()} </h1>
+
                 <button type="button"
                     className="btn btn-success justify-content-center"
                     onClick={() => {
@@ -35,11 +30,19 @@ export default class ContactInfo extends Component {
                 <button type="button"
                     className="btn btn-success justify-content-center"
                     onClick={() => {
-                        this.props.history.push("/contacts/1/info/messages")
+                        this.props.history.push(`/contacts/${this.props.match.params.contactId}/info/messages`)
                     }
                     }>
-                    Name's Messages
+                    {oneContact()}'s Messages
                     </button>
+                <button
+                    onClick={() => this.props.deleteContact(this.props.match.params.contactId)
+                        }
+                    className="btn btn-danger">Delete</button>
+                <ContactEdit
+                updateContact={this.props.updateContact}
+                {...this.props}
+                />
             </section>
         )
     }
