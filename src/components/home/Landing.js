@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import "./landing.css"
 import sendEmails from "../../modules/emailjs/sendEmails"
+import raidLocation from '../map/raidLocation';
 
 export default class Landing extends Component {
 
@@ -35,6 +36,8 @@ export default class Landing extends Component {
                     }>
                     !
                     </button>
+                    <button type="button"
+                        onClick={() => {raidLocation.raidLocationTagging()}}>test location</button>
             </section>
         )
     }
