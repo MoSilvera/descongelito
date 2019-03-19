@@ -30,7 +30,7 @@ export default class Landing extends Component {
                 <button type="button"
                     className="btn-circle btn-xl"
                     onClick={() => {
-                        sendEmails.console()
+                        sendEmails.emergencyActivation()
                     }
                     }>
                     !

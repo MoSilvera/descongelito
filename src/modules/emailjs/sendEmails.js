@@ -1,24 +1,58 @@
 
 import userManager from "../resourceManager/userManager"
-import carrierManager from "../resourceManager/carrierManager"
+import emailManager from "../../modules/resourceManager/emailManager"
 import contactManager from "../resourceManager/contactManager"
 import messageManager from "../resourceManager/messageManager"
 import * as emailjs from "emailjs-com"
 
-let template_params = {
-    "contact_email": "",
-    "contactFirstName": "",
-    "contactLastName": "",
-    "userFirstName": "",
-    "userLastName": "",
-    "message": "",
-    "subject": ""
-}
-var service_id = "gmail";
-var template_id = "contact_form";
+
+
 const  sendEmails = {
-    console: ()=>{ emailjs.init("user_QF7rgRgswIOf3pS7i18GT")
-    emailjs.send(service_id, template_id, template_params)}
+    emergencyActivation: ()=> {
+        var currentUserId = ""
+        var currentUserFirstName = ""
+        var currentUserLastName = ""
+        var contactIdArray = []
+        var contactArray =  []
+        var service_id = "gmail";
+        var template_id = "contact_form";
+
+        userManager.GETALL()
+        .then((users)=> users.find((user)=> user.id === parseInt(sessionStorage.getItem("credentials"))))
+        .then((user) => {
+            currentUserId = user.id
+            currentUserFirstName = user.userFirstName
+            currentUserLastName = user.userLastName
+        })
+        .then(()=> contactManager.GETALL())
+        .then((contacts) => contacts.filter((contact) => contact.userId === currentUserId))
+        .then((myContacts) => contactArray = myContacts)
+        .then(()=> contactIdArray = contactArray.map((contact)=> contact.id))
+        .then(()=> messageManager.GETALL())
+        .then((messages) => messages.filter((message)=> contactIdArray.includes(message.contactId)))
+        .then((myContactsMessages) => myContactsMessages.forEach(message => {
+            let template_params = {
+                "contact_email": "",
+                "contactFirstName": "",
+                "contactLastName": "",
+                "userFirstName": currentUserFirstName,
+                "userLastName": currentUserLastName,
+                "message": message.messageBody,
+                "subject": message.messageSubject
+            }
+            contactManager.GET(message.contactId)
+            .then((contact)=> {
+                template_params.contactFirstName = contact.contactFirstName
+                template_params.contactLastName = contact.contactLastName
+            })
+            .then(()=> emailManager.GET(message.email))
+            .then((email)=> template_params.contact_email = email.email)
+            .then(()=>  { emailjs.init("user_QF7rgRgswIOf3pS7i18GT")
+                emailjs.send(service_id, template_id, template_params)})
+        }) )
+    }
+
+
 }
 
 export default sendEmails
@@ -26,42 +60,28 @@ export default sendEmails
 
 
 
-// console: () => userManager.GETALL()
-// .then((users) => users.filter( (user) => user.id === parseInt(sessionStorage.getItem("credentials"))))
-// .then((user) => user.map((r) => {
-//         userFirstName = r.userFirstName
-//         userLastName = r.userLastName}))
-//     .then(()=> console.log(userFirstName + " " + userLastName))
-//     .then(()=> contactManager.GETALL())
-//     .then((contacts) => contacts.filter((contact) => contact.userId === parseInt(sessionStorage.getItem("credentials"))))
-//     .then((arrayOfContacts) => contactArray = arrayOfContacts.map((contact) => contact.id))
-//     .then(()=> messageManager.GETALL())
-//     .then((messages) => messages.filter((message) => contactArray.includes(message.contactId)))
-//     .then((r)=> console.log(r))
-    
-    // setUp = () => {
-        // ;
-        // emailjs.sendForm('contact_service', 'contact_template', this);
-        // }
-        
-        
-        // var template_params = {
-        //     "contact_email": "mo.leslie.silvera@gmail.com",
-        //     "contactFirstName": "Contact",
-        //     "contactLastName": "Person",
-        //     "userFirstName": "User",
-        //     "userLastName": "Person",
-        //     "message": "This is a test",
-        //     "subject": "testing"
-        // }
-        // let sendEmail = () => {
-        //     emailjs.init("user_QF7rgRgswIOf3pS7i18GT")
-        //     var service_id = "gmail";
-        //     var template_id = "contact_form";
-        //     emailjs.send(service_id, template_id, template_params);
-        // }
+// let sendDynamic = () => {
+//     var currentUserId = ""
+//     var userFirstName = ""
+//     var userLastName = ""
+//     var queuedMessages=[]
+//     var contactIdArray = []
+//     var contactArray =  []
+//     var service_id = "gmail";
+//     var template_id = "contact_form";
 
-// fetch(`http://localhost:3003/messages?_expand=contact&&`)
-//     .then(r => r.json())
-//     .then((r) => r.map((r) => console.log(r.contact.contactFirstName)))
-// let fetchCall = fetch(`http://localhost:3003/messages?_expand=contact&&`)
+//     userManager.GETALL()
+//     .then((user))
+// }
+
+// let template_params = {
+//     "contact_email": "",
+//     "contactLastName": "",
+//     "userFirstName": "",
+//     "userLastName": "",
+//     "message": "",
+//     "subject": ""
+// }
+
+// let send = () => { emailjs.init("user_QF7rgRgswIOf3pS7i18GT")
+//     emailjs.send(service_id, template_id, template_params)}
