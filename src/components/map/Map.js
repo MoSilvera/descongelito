@@ -6,30 +6,19 @@ const mapStyles = {
   width: '100%',
   height: '100%',
 
-};
-// let markers = () => {
-//     var marker, i;
-//     raidLocationManager.GETALL()
-//     .then((locations)=> {for (i = 0; i < locations.length; i++) {
-//       marker = new google.maps.Marker({
-//         position: new google.maps.LatLng(locations.lat, locations.long),
-//         map: Map
-//       })
-//       (marker, i)}}) }
-
-
+}
 
 export class MapContainer extends Component {
 
-  state={
+  state = {
     raidLocations: []
   }
 
-  componentDidMount (){
+  componentDidMount() {
     raidLocationManager.GETALL()
-    .then((raidLocations)=>this.setState({
+      .then((raidLocations) => this.setState({
         raidLocations: raidLocations
-    }))
+      }))
   }
 
   render() {
@@ -48,21 +37,16 @@ export class MapContainer extends Component {
 
         }}>
 
-       {
-         this.state.raidLocations.map((location => { 
-         
-          return <Marker
-          name={"Raid Occurance"}
-          position={{lat:location.lat, lng:location.long}}
-           />
-          
-           }))
-           }
+        {
+          this.state.raidLocations.map((location => {
 
-        {/* <Marker
-          name={"Raid Occurance"}
-          position={{ lat: 36.1627, lng: -86.7816 }}
-        /> */}
+            return <Marker
+              name={"Raid Occurance"}
+              position={{ lat: location.lat, lng: location.long }}
+            />
+
+          }))
+        }
 
       </Map>
     );

@@ -38,7 +38,7 @@ export default class ContactInfo extends Component {
                 <button
                     onClick={() => this.props.deleteContact(this.props.match.params.contactId)
                         }
-                    className="btn btn-danger">Delete</button>
+                    className="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                 <ContactEdit
                 updateContact={this.props.updateContact}
                 {...this.props}
