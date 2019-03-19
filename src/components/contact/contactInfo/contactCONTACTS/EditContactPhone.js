@@ -10,6 +10,7 @@ export default class EditContactPhone extends Component {
         id: "",
         phoneNumber: "",
         contactId: "",
+        carrierId: "",
 
     }
 
@@ -32,6 +33,7 @@ export default class EditContactPhone extends Component {
             id: this.state.id,
             phoneNumber: this.state.phoneNumber,
             contactId: this.state.contactId,
+            carrierId: this.state.carrierId,
 
         };
 
@@ -71,6 +73,23 @@ export default class EditContactPhone extends Component {
                                     id="phoneNumber"
                                     value={this.state.phoneNumber}
                                 />
+                                <div className="form-group">
+                                <label htmlFor="contact">Assign to Carrier</label>
+                                <select
+                                    defaultValue=""
+                                    name="carrierId"
+                                    id="carrierId"
+                                    onChange={this.handleFieldChange}
+                                   
+                                >
+                                    <option>Pick a Carrier</option>
+                                    {this.props.carriers.map(carrier =>
+                                            <option className="carrier" key={carrier.id} id={carrier.id} value={carrier.id}>
+                                                {carrier.serviceName}
+                                            </option>
+                                        )}
+                                </select>
+                        </div>
                             </div>
 
                         </ModalBody>

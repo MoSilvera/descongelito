@@ -153,7 +153,7 @@ class ApplicationViews extends Component {
       .then(() => {
         this.setState(newState)
       })
- 
+
   }
   render() {
     return (
