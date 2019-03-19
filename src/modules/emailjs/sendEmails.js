@@ -57,31 +57,3 @@ const  sendEmails = {
 
 export default sendEmails
 
-
-
-
-// let sendDynamic = () => {
-//     var currentUserId = ""
-//     var userFirstName = ""
-//     var userLastName = ""
-//     var queuedMessages=[]
-//     var contactIdArray = []
-//     var contactArray =  []
-//     var service_id = "gmail";
-//     var template_id = "contact_form";
-
-//     userManager.GETALL()
-//     .then((user))
-// }
-
-// let template_params = {
-//     "contact_email": "",
-//     "contactLastName": "",
-//     "userFirstName": "",
-//     "userLastName": "",
-//     "message": "",
-//     "subject": ""
-// }
-
-// let send = () => { emailjs.init("user_QF7rgRgswIOf3pS7i18GT")
-//     emailjs.send(service_id, template_id, template_params)}
