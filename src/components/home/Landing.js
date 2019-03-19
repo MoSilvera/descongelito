@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import "./landing.css"
+import sendEmails from "../../modules/emailjs/sendEmails"
 
 export default class Landing extends Component {
 
@@ -29,7 +30,7 @@ export default class Landing extends Component {
                 <button type="button"
                     className="btn-circle btn-xl"
                     onClick={() => {
-                        this.props.history.push("/contacts")
+                        sendEmails.emergencyActivation()
                     }
                     }>
                     !

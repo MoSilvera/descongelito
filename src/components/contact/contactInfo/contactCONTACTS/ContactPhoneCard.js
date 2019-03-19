@@ -15,7 +15,10 @@ export default class ContactPhoneCard extends Component {
             .map(cellNumber =>
             <div key={cellNumber.id}>
             <h5>{cellNumber.phoneNumber}</h5>
-               <span><EditContactPhone  cellNumberId={cellNumber.id} updateCellNumber={this.props.updateCellNumber}/>
+               <span><EditContactPhone
+                cellNumberId={cellNumber.id}
+                updateCellNumber={this.props.updateCellNumber}
+                carriers={this.props.carriers}/>
              <button
                                 onClick={() => this.props.deleteCellNumber(cellNumber.id)}
                                 className="btn btn-danger">Delete</button>
