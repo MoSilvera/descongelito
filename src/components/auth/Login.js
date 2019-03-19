@@ -6,7 +6,7 @@ export default class Login extends Component {
   // Set initial state
   state = {
     password: "",
-    username: ""
+    userName: ""
   }
 
   // Update state whenever an input field is edited
@@ -19,13 +19,13 @@ export default class Login extends Component {
   handleRegister = e => {
     e.preventDefault()
     const newUser = {
-      username: this.state.username,
+      userName: this.state.userName,
       password: this.state.password
     }
-    if (this.state.username && this.state.password) {
-      UserManager.searchUsername(this.state.username).then(users => {
+    if (this.state.userName && this.state.password) {
+      UserManager.searchUsername(this.state.userName).then(users => {
         if (users.length) {
-          alert(`Username ${this.state.username} already exits!`)
+          alert(`Username ${this.state.userName} already exits!`)
         } else {
           UserManager.addUser(newUser).then(user => {
             sessionStorage.setItem("credentials", parseInt(user.id))
@@ -40,8 +40,8 @@ export default class Login extends Component {
 
   handleLogin = e => {
     e.preventDefault()
-    if (this.state.username && this.state.password) {
-      UserManager.searchUP(this.state.username, this.state.password).then(
+    if (this.state.userName && this.state.password) {
+      UserManager.searchUP(this.state.userName, this.state.password).then(
         user => {
           if (!user.length) {
             alert("Wrong username or password!")
@@ -63,8 +63,8 @@ export default class Login extends Component {
         <label htmlFor="inputUsername">Username</label>
         <input
           onChange={this.handleFieldChange}
-          type="username"
-          id="username"
+          type="userName"
+          id="userName"
           placeholder={` Something Cool`}
           required=""
           autoFocus=""

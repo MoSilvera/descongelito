@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import "./landing.css"
 import sendEmails from "../../modules/emailjs/sendEmails"
 import raidLocation from '../map/raidLocation';
+import raidLocationManager from "../../modules/resourceManager/raidLocationManager"
 
 export default class Landing extends Component {
-
+    state ={
+        raidLocations: "",
+    }
 
     render() {
 
@@ -32,12 +35,16 @@ export default class Landing extends Component {
                     className="btn-circle btn-xl"
                     onClick={() => {
                         sendEmails.emergencyActivation()
+                        raidLocation.raidLocationTagging()
+                        // .then(()=> raidLocationManager.GETALL())
+                        // .then((locations)=>this.setState({
+                        //     raidLocations: locations
+                        //   }))
                     }
                     }>
                     !
                     </button>
-                    <button type="button"
-                        onClick={() => {raidLocation.raidLocationTagging()}}>test location</button>
+
             </section>
         )
     }

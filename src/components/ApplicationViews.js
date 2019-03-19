@@ -28,6 +28,7 @@ class ApplicationViews extends Component {
     messages: [],
 
   }
+
   addContact = contact =>
     contactManager.POST(contact)
       .then(() => contactManager.GETALL())

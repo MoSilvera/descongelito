@@ -21,6 +21,17 @@ const mapStyles = {
 
 export class MapContainer extends Component {
 
+  state={
+    raidLocations: []
+  }
+
+  componentDidMount (){
+    raidLocationManager.GETALL()
+    .then((raidLocations)=>this.setState({
+        raidLocations: raidLocations
+    }))
+  }
+
   render() {
 
 
@@ -38,7 +49,7 @@ export class MapContainer extends Component {
         }}>
 
        {
-         this.props.raidLocations.map((location => { 
+         this.state.raidLocations.map((location => { 
          
           return <Marker
           name={"Raid Occurance"}

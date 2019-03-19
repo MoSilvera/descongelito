@@ -7,6 +7,7 @@ function showPosition(position) {
         long: position.coords.longitude
     }
   raidLocationManager.POST(raidObject)
+
 }
 
 const raidLocation = {
