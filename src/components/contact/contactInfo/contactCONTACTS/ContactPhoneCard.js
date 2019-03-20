@@ -10,7 +10,7 @@ export default class ContactPhoneCard extends Component {
 
         return (
 
-            <section className="contactCard">
+            <section>
             { this.props.cellNumbers.filter(cellNumber => cellNumber.contactId === parseInt(this.props.match.params.contactId))
             .map(cellNumber =>
             <div key={cellNumber.id}>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import "./contactList.css"
-
+import { Button } from "reactstrap"
 
 
 export default class ContactCard extends Component {
@@ -10,24 +10,25 @@ export default class ContactCard extends Component {
 
         return (
 
-            <section className="card contactCard">
+            <section className="oneCardSection">
            {this.props.contacts.filter(contact => contact.userId === Number(sessionStorage.getItem("credentials")))
             .map(contact =>
-                <div key={contact.id} className="contact">
+                <div key={contact.id} className="contactCard card">
                     <div className="card-body">
+                        <h2 className="h2"><i class="fas fa-users"></i></h2>
                         <h5 className="card-title">
                             {contact.contactFirstName} {contact.contactLastName}
                             <br></br>
                         </h5>
                    </div>
-                   <button type="button"
-                    className="btn btn-success justify-content-center"
+                   <Button type="button"
+                    className="btn justify-content-center"
                     onClick={() => {
                         this.props.history.push(`/contacts/${contact.id}/info`)
                     }
                 }>
-                   <i class="fas fa-info-circle"></i>
-                    </button>
+                  <h3><i class="fas fa-info-circle"></i></h3>
+                    </Button>
                 </div>
             )
 

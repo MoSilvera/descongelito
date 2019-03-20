@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
-class Nav extends Component {
+import { Nav, NavItem, NavLink, Button } from 'reactstrap';
+import "./navBar.css"
+class NavBar extends Component {
   logout = () => {
     sessionStorage.clear("credentials")
     this.props.setAuth()
@@ -9,26 +11,26 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+      <nav id="nav" style={{backgroundColor:"white"}}className="navbar fixed-top flex-md-nowrap p-0 shadow">
         <ul className="nav nav-pills">
           <li className="nav-item">
             <Link className="nav-link" to="/">
-              Descongelito
+            <h1 id="h1"><i class="fas fa-home"></i></h1>
             </Link>
           </li>
         </ul>
         <button
         type="button"
         ><i className="fas fa-dice-d6"></i></button>
-        <button
+        <Button
+          id="logout"
           type="button"
-          className="btn btn-outline-info"
           onClick={this.logout}>
           Logout
-        </button>
+        </Button>
       </nav>
     )
   }
 }
 
-export default Nav
+export default NavBar

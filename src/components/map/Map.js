@@ -5,7 +5,7 @@ import raidLocationManager from "../../modules/resourceManager/raidLocationManag
 const mapStyles = {
   width: '99%',
   height: '80%',
-  
+
 
 }
 export class MapContainer extends Component {

@@ -3,6 +3,7 @@ import ContactEmailCard from "./ContactEmailCard"
 import ContactPhoneCard from "./ContactPhoneCard"
 import AddContactEmail from "./AddContactEmail"
 import AddContactPhone from "./AddContactPhone"
+import "./addressBook.css"
 
 
 export default class ContactContactList extends Component {

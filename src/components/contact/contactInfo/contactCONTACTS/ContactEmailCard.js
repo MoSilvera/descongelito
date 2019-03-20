@@ -10,7 +10,7 @@ export default class ContactEmailCard extends Component {
 
         return (
 
-            <section className="contactCard">
+            <section >
             { this.props.emails.filter( email => email.contactId === parseInt(this.props.match.params.contactId))
             .map(email =>
             <div key={email.id}>

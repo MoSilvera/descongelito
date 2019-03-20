@@ -1,4 +1,4 @@
-.contactInfo {
+.contactContactList {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,5 +8,4 @@
     background-size: cover;
     background-repeat: repeat;
     background-color: #E8E8E8;
-    font-family: 'Bungee Shade', cursive;
 }
