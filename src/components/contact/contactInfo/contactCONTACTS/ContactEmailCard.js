@@ -19,7 +19,7 @@ export default class ContactEmailCard extends Component {
             <EditContactEmail emailId={email.id} updateEmail={this.props.updateEmail} />
              <button
                                 onClick={() => this.props.deleteEmail(email.id)}
-                                className="btn btn-danger">Delete</button>
+                                className="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
              </span>
              </div>) }
             </section>

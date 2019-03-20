@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "./login.css"
 import UserManager from "../../modules/resourceManager/utilities/UserManager"
+import Register from "./Register"
 
 export default class Login extends Component {
   // Set initial state
@@ -65,24 +66,23 @@ export default class Login extends Component {
           onChange={this.handleFieldChange}
           type="userName"
           id="userName"
-          placeholder={` Something Cool`}
+          placeholder={` Username`}
           required=""
           autoFocus=""
         />
+        <hr></hr>
         <label htmlFor="inputPassword">Password</label>
         <input
           onChange={this.handleFieldChange}
           type="password"
           id="password"
-          placeholder={` Don't tell!`}
+          placeholder={` password `}
           required=""
         />
         <button type="submit" onClick={this.handleLogin}>
           Sign in
         </button>
-        <button type="submit" onClick={this.handleRegister}>
-          Register
-        </button>
+       <Register setAuth={this.props.setAuth}/>
       </form>
     )
   }

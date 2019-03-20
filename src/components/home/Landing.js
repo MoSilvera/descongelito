@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import "./landing.css"
 import sendEmails from "../../modules/emailjs/sendEmails"
 import raidLocation from '../map/raidLocation';
-import raidLocationManager from "../../modules/resourceManager/raidLocationManager"
+
 
 export default class Landing extends Component {
-   
+
 
     render() {
 

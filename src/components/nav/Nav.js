@@ -19,7 +19,7 @@ class Nav extends Component {
         </ul>
         <button
         type="button"
-        ><span role="img" aria-label="snowflake">❄️</span></button>
+        ><i className="fas fa-dice-d6"></i></button>
         <button
           type="button"
           className="btn btn-outline-info"

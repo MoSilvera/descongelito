@@ -3,16 +3,16 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import raidLocationManager from "../../modules/resourceManager/raidLocationManager"
 
 const mapStyles = {
-  width: '100%',
-  height: '100%',
+  width: '99%',
+  height: '80%',
+  
 
 }
-
 export class MapContainer extends Component {
 
   state = {
     raidLocations: []
-  }
+}
 
   componentDidMount() {
     raidLocationManager.GETALL()
@@ -41,6 +41,7 @@ export class MapContainer extends Component {
           this.state.raidLocations.map((location => {
 
             return <Marker
+              key={location.id}
               name={"Raid Occurance"}
               position={{ lat: location.lat, lng: location.long }}
             />

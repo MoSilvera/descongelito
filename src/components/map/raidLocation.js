@@ -10,13 +10,9 @@ function showPosition(position) {
 
 }
 
-const raidLocation = {
-    raidLocationTagging: ()=> { {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-          console.log("Geolocation is not supported by this browser.")
-        }
+const raidLocation = { raidLocationTagging: ()=> { {
+      if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(showPosition)}
+      else {console.log("Geolocation is not supported by this browser.")}
       }
     }
 }
