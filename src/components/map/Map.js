@@ -3,18 +3,32 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import raidLocationManager from "../../modules/resourceManager/raidLocationManager"
 
 const mapStyles = {
-  width: '99%',
-  height: '80%',
+  width: '100%',
+  height: '90%',
 
 
 }
 export class MapContainer extends Component {
 
   state = {
-    raidLocations: []
+    raidLocations: [],
+    userLocation: { lat: 32, lng: 32 }, loading: true
 }
 
   componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const { latitude, longitude } = position.coords;
+
+        this.setState({
+          userLocation: { lat: latitude, lng: longitude },
+          loading: false
+        });
+      },
+      () => {
+        this.setState({ loading: false });
+      }
+    );
     raidLocationManager.GETALL()
       .then((raidLocations) => this.setState({
         raidLocations: raidLocations
@@ -24,6 +38,12 @@ export class MapContainer extends Component {
   render() {
 
 
+      const { loading, userLocation } = this.state;
+
+
+      if (loading) {
+        return null;
+      }
 
 
     return (
@@ -31,11 +51,7 @@ export class MapContainer extends Component {
         google={this.props.google}
         zoom={12}
         style={mapStyles}
-        initialCenter={{
-          lat: 36.1627,
-          lng: -86.7816,
-
-        }}>
+        initialCenter={userLocation}>
 
         {
           this.state.raidLocations.map((location => {
