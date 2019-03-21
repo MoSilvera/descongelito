@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import contactManager from "../../../modules/resourceManager/contactManager"
-
+import "./contactInfo.css"
 
 export default class ContactEdit extends Component {
 
@@ -61,7 +61,7 @@ export default class ContactEdit extends Component {
 
         return (
             <React.Fragment>
-                    <Button color="info" onClick={this.toggle}>Edit Contact</Button>
+                    <Button className="btn edDel" onClick={this.toggle}>Edit Contact</Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                         <ModalHeader toggle={this.toggle}>Change Contact Name</ModalHeader>
                         <ModalBody>

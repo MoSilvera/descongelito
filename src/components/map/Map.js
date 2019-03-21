@@ -1,27 +1,59 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import raidLocationManager from "../../modules/resourceManager/raidLocationManager"
 
 const mapStyles = {
-  width: '100%',
-  height: '100%'
-};
+  width: '99%',
+  height: '80%',
 
+
+}
 export class MapContainer extends Component {
+
+  state = {
+    raidLocations: []
+}
+
+  componentDidMount() {
+    raidLocationManager.GETALL()
+      .then((raidLocations) => this.setState({
+        raidLocations: raidLocations
+      }))
+  }
+
   render() {
+
+
+
+
     return (
       <Map
         google={this.props.google}
-        zoom={14}
+        zoom={12}
         style={mapStyles}
         initialCenter={{
-         lat: -1.2884,
-         lng: 36.8233
-        }}
-      />
+          lat: 36.1627,
+          lng: -86.7816,
+
+        }}>
+
+        {
+          this.state.raidLocations.map((location => {
+
+            return <Marker
+              key={location.id}
+              name={"Raid Occurance"}
+              position={{ lat: location.lat, lng: location.long }}
+            />
+
+          }))
+        }
+
+      </Map>
     );
   }
 }
 
 export default GoogleApiWrapper({
-  apiKey: ''
+  apiKey: 'AIzaSyAAAsfzkVnEe5EqMSr_2tvuVUp8mQl9yfM'
 })(MapContainer);

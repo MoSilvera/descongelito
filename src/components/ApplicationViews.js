@@ -28,6 +28,7 @@ class ApplicationViews extends Component {
     messages: [],
 
   }
+
   addContact = contact =>
     contactManager.POST(contact)
       .then(() => contactManager.GETALL())
@@ -171,7 +172,9 @@ class ApplicationViews extends Component {
             {...props} />
         }} />
         <Route exact path="/map" render={(props) => {
-          return <MapContainer {...props} />
+          return <MapContainer 
+          raidLocations={this.state.raidLocations}
+          {...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info" render={props => {
           return <ContactInfo

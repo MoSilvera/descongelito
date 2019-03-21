@@ -1,9 +1,11 @@
 import React, { Component } from "react"
-import Nav from "./nav/Nav"
+import NavBar from "../components/nav/NavBar"
 import ApplicationViews from "./ApplicationViews"
 import UserManager from "../modules/resourceManager/utilities/UserManager"
+import { withRouter }from "react-router-dom"
 
-export default class UserAccessLayer extends Component {
+
+class UserAccessLayer extends Component {
   state = {
     activeUser: {}
   }
@@ -18,12 +20,16 @@ export default class UserAccessLayer extends Component {
   render() {
     return (
       <React.Fragment>
-        <Nav setAuth={this.props.setAuth} activeUser={this.state.activeUser}  />
+        <NavBar setAuth={this.props.setAuth} activeUser={this.state.activeUser} />
+        <div className="appContainer">
         <ApplicationViews
           activeUserId={this.activeUserId}
           activeUser={this.state.activeUser}
         />
+        </div>
       </React.Fragment>
     )
   }
 }
+
+export default withRouter(UserAccessLayer)

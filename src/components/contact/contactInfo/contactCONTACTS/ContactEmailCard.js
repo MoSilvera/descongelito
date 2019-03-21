@@ -10,7 +10,7 @@ export default class ContactEmailCard extends Component {
 
         return (
 
-            <section className="contactCard">
+            <section >
             { this.props.emails.filter( email => email.contactId === parseInt(this.props.match.params.contactId))
             .map(email =>
             <div key={email.id}>
@@ -19,7 +19,7 @@ export default class ContactEmailCard extends Component {
             <EditContactEmail emailId={email.id} updateEmail={this.props.updateEmail} />
              <button
                                 onClick={() => this.props.deleteEmail(email.id)}
-                                className="btn btn-danger">Delete</button>
+                                className="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
              </span>
              </div>) }
             </section>

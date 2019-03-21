@@ -10,7 +10,7 @@ export default class ContactPhoneCard extends Component {
 
         return (
 
-            <section className="contactCard">
+            <section>
             { this.props.cellNumbers.filter(cellNumber => cellNumber.contactId === parseInt(this.props.match.params.contactId))
             .map(cellNumber =>
             <div key={cellNumber.id}>
@@ -21,7 +21,7 @@ export default class ContactPhoneCard extends Component {
                 carriers={this.props.carriers}/>
              <button
                                 onClick={() => this.props.deleteCellNumber(cellNumber.id)}
-                                className="btn btn-danger">Delete</button>
+                                className="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
              </span>
              </div>) }
             </section>

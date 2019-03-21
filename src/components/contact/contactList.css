@@ -2,8 +2,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #E8E8E8;
+    width: 100%;
+    background-position: top;
+    background-size: cover;
+    background-repeat: repeat; 
 }
 
 .contactCard {
-    flex-basis: 31%;
+    display: flex;
+   padding: 20px;
+   margin: 30px;
+   border: solid 4px #564256;
+   justify-content: center;
+   color: #564256;
+
+}
+
+.h2 {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+}
+
+#contactListTitle{
+    font-family: 'Bungee Shade', cursive;
+    font-size: 40px;
+    margin-top: 10px;
+    color: #564256;
 }
