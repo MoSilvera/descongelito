@@ -59,7 +59,7 @@ export default class EditContactEmail extends Component {
 
         return (
             <React.Fragment>
-                    <Button color="info" onClick={this.toggle}><i class="fas fa-edit"></i></Button>
+                    <Button color="info" onClick={this.toggle}><i className="fas fa-edit"></i></Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                         <ModalHeader toggle={this.toggle}>Edit Email</ModalHeader>
                         <ModalBody>

@@ -1,0 +1,32 @@
+#messages {
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: #564256;
+    font-size: 15px;
+
+}
+
+#messageTitle{
+
+    display: flex;
+    flex-direction: column;
+    margin-left: 52px;
+    margin-top: 10px;
+    font-family: 'Bungee Shade', cursive;
+    color: #564256;
+
+}
+
+.add{
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    font-size: 17px;
+}
+

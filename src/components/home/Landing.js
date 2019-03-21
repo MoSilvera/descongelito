@@ -43,8 +43,8 @@ export default class Landing extends Component {
                 <div type="button"
                     onClick={() => {
                         this.notify()
-                        // sendEmails.emergencyActivation()
-                        // raidLocation.raidLocationTagging()
+                        sendEmails.emergencyActivation()
+                        raidLocation.raidLocationTagging()
 
                     }
                     }>

@@ -12,7 +12,7 @@ export default class ContactContactList extends Component {
     render() {
         let oneContact = () => {
             return this.props.contacts.filter(contact => (contact.id === parseInt(this.props.match.params.contactId)))
-                .map(contact => { return <h1> key={contact.id}>{contact.contactFirstName}'s Addresses</h1> })
+                .map(contact => { return <h1 key={contact.id}>{contact.contactFirstName}'s Addresses</h1> })
         }
         return (
 

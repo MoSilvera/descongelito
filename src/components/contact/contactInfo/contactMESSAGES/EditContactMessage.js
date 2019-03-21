@@ -85,7 +85,7 @@ export default class EditContactMessage extends Component {
 
             <section className="contactMessage">
                 <div>
-                    <Button color="info" onClick={this.toggle}>Edit</Button>
+                    <Button  onClick={this.toggle}><i className="fas fa-edit"></i> Edit</Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                         <ModalHeader toggle={this.toggle}>Edit Message</ModalHeader>
                         <ModalBody>
