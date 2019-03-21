@@ -14,11 +14,10 @@ export default class ContactCard extends Component {
            {this.props.contacts.filter(contact => contact.userId === Number(sessionStorage.getItem("credentials")))
             .map(contact =>
                 <div key={contact.id} className="contactCard card">
-                    <div className="card-body">
+                    <div className="card-body contactDiv">
                         <h2 className="h2"><i className="fas fa-users"></i></h2>
-                        <h5 className="card-title justify-content-center" >
+                        <h5 className="card-title text-center" >
                             {contact.contactFirstName} {contact.contactLastName}
-                           
                         </h5>
                    </div>
                    <Button type="button"
@@ -27,7 +26,7 @@ export default class ContactCard extends Component {
                         this.props.history.push(`/contacts/${contact.id}/info`)
                     }
                 }>
-                  <h3><i class="fas fa-info-circle"></i> Info</h3>
+                  <span id="info"><i class="fas fa-info-circle"></i> Info</span>
                     </Button>
                 </div>
             )
