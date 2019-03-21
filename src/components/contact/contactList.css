@@ -17,6 +17,7 @@
    justify-content: center;
    color: #564256;
 
+
 }
 
 .h2 {
@@ -30,4 +31,8 @@
     font-size: 40px;
     margin-top: 10px;
     color: #564256;
+}
+
+#info{
+    font-size: 20px;
 }
