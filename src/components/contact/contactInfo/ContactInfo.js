@@ -43,6 +43,7 @@ export default class ContactInfo extends Component {
                 <div id="editDelete">
                     <Button
                     onClick={() => this.props.deleteContact(this.props.match.params.contactId)
+                        .then(()=> this.props.history.push("/contacts"))
                     }
                     className="btn edDel"><i className="fas fa-trash-alt"></i> Delete
                     </Button>

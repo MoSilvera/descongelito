@@ -2,7 +2,8 @@
     display:flex;
     justify-content: center;
     flex-direction: row;
-    align-content: center;
+    flex-wrap: wrap;
+    justify-content: right;
     align-items: center;
     font-family: 'Roboto', sans-serif;
     color: #564256;
