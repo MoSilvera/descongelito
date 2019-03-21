@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Nav, NavItem, NavLink, Button } from 'reactstrap';
 import "./navBar.css"
+import melt from "../../images/cold.png"
 class NavBar extends Component {
   logout = () => {
     sessionStorage.clear("credentials")
@@ -15,13 +16,13 @@ class NavBar extends Component {
         <ul className="nav nav-pills">
           <li className="nav-item">
             <Link className="nav-link" to="/">
-            <h1 id="h1"><i class="fas fa-home"></i></h1>
+            <h1 id="h1">  <i className="fas fa-home">  </i></h1>
             </Link>
           </li>
         </ul>
         <button
         type="button"
-        ><i className="fas fa-dice-d6"></i></button>
+        > <img id="icon" src={melt}/></button>
         <Button
           id="logout"
           type="button"

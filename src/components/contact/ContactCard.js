@@ -15,19 +15,19 @@ export default class ContactCard extends Component {
             .map(contact =>
                 <div key={contact.id} className="contactCard card">
                     <div className="card-body">
-                        <h2 className="h2"><i class="fas fa-users"></i></h2>
-                        <h5 className="card-title">
+                        <h2 className="h2"><i className="fas fa-users"></i></h2>
+                        <h5 className="card-title justify-content-center" >
                             {contact.contactFirstName} {contact.contactLastName}
-                            <br></br>
+                           
                         </h5>
                    </div>
                    <Button type="button"
-                    className="btn justify-content-center"
+                    className="btn justify-content-center align-content-center"
                     onClick={() => {
                         this.props.history.push(`/contacts/${contact.id}/info`)
                     }
                 }>
-                  <h3><i class="fas fa-info-circle"></i></h3>
+                  <h3><i class="fas fa-info-circle"></i> Info</h3>
                     </Button>
                 </div>
             )

@@ -3,9 +3,16 @@ import "./landing.css"
 import sendEmails from "../../modules/emailjs/sendEmails"
 import raidLocation from '../map/raidLocation';
 import { Button } from 'reactstrap'
+import tempButton from "../../images/energy.png"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default class Landing extends Component {
+    notify = () => toast("Emergency Alert Activated!", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
+;
 
 
     render() {
@@ -21,7 +28,7 @@ export default class Landing extends Component {
                         this.props.history.push("/contacts")
                     }
                     }>
-                    <h2><i class="fas fa-users"></i>  CONTACTS</h2>
+                    <h2><i className="fas fa-users"></i>  CONTACTS</h2>
                     </Button>
                 <Button type="button"
                     className="landingButton"
@@ -30,20 +37,20 @@ export default class Landing extends Component {
                         this.props.history.push("/map")
                     }
                     }>
-                   <h2><i class="fas fa-map-marked-alt"></i>  RAID MAP</h2>
+                   <h2><i className="fas fa-map-marked-alt"></i>  RAID MAP</h2>
                     </Button>
-                <Button type="button"
-                    size ="lg"
-                    className="btn-circle btn-xl"
-                    outline color ="danger"
+                    <div id="instructions">Press To Activate Alert</div>
+                <div type="button"
                     onClick={() => {
-                        sendEmails.emergencyActivation()
-                        raidLocation.raidLocationTagging()
+                        this.notify()
+                        // sendEmails.emergencyActivation()
+                        // raidLocation.raidLocationTagging()
 
                     }
                     }>
-                    <h1><i class="fas fa-exclamation-triangle"></i></h1>
-                    </Button>
+                    <h1><img id="tempButton" src={tempButton}/></h1>
+                    </div>
+                    <ToastContainer />
 
             </section>
         )

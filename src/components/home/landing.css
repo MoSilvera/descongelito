@@ -46,3 +46,16 @@
     width: 247.67px;
     height: 64;
 }
+
+#tempButton {
+    width: 160px;
+    height: 160px;
+    margin-top: 20px;
+}
+
+#instructions {
+    margin-top: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    color: #564256;
+}

@@ -3,16 +3,16 @@
     color:  #564256;
 }
 
-#logout {
-    width: 95px;
-}
-
-
-
 .nav-link{
     color:  #564256;
 }
 .nav-link:visited{
     color:  #564256;
 
+}
+
+#icon {
+    height: 60px;
+    width: 60px;
+    margin-left: 10px;
 }

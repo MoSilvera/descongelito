@@ -22,7 +22,7 @@ export default class ContactInfo extends Component {
         return (
 
             <section className="contactInfo">
-                <h1>{oneContact()} </h1>
+                <h1 className="contactName">{oneContact()} </h1>
 
                 <Button type="button"
                     className="btn justify-content-center"
@@ -38,12 +38,12 @@ export default class ContactInfo extends Component {
                         this.props.history.push(`/contacts/${this.props.match.params.contactId}/info/messages`)
                     }
                     }>
-                  <h2><i class="fas fa-envelope"></i> {oneContactFirstName()}'s Messages</h2>
+                  <h2><i className="fas fa-envelope"></i>  Messages For {oneContactFirstName()}</h2>
                     </button>
                 <button
                     onClick={() => this.props.deleteContact(this.props.match.params.contactId)
                         }
-                    className="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    className="btn btn-danger"><i className="fas fa-trash-alt"></i></button>
                 <ContactEdit
                 updateContact={this.props.updateContact}
                 {...this.props}
