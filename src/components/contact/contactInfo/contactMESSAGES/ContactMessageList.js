@@ -21,7 +21,7 @@ export default class ContactMessageList extends Component {
                     onClick={() => {
                         this.props.history.push(`/messages/${this.props.match.params.contactId}/add`)
                     }
-                    }><i class="fas fa-envelope"></i> Add Message</Button></div> </div>
+                    }><i className="fas fa-envelope"></i> Add Message</Button></div> </div>
                     <div id="messages">
                 {this.props.messages.filter(message => (message.contactId === parseInt(this.props.match.params.contactId)))
                     .map(message => {
@@ -33,7 +33,7 @@ export default class ContactMessageList extends Component {
                                 updateMessage={this.props.updateMessage}
                                 {...this.props}/>
                               <span> <Button className="btn"
-                                onClick={() => this.props.deleteMessage(message.id)}><i class="fas fa-trash-alt"></i> Delete</Button></span>
+                                onClick={() => this.props.deleteMessage(message.id)}><i className="fas fa-trash-alt"></i> Delete</Button></span>
                                 </React.Fragment>
                     })}
                     </div>

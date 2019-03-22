@@ -4,7 +4,9 @@ import ContactEdit from "./ContactEdit"
 import { Button } from "reactstrap"
 
 export default class ContactInfo extends Component {
-
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
 
     render() {
 
@@ -12,12 +14,6 @@ export default class ContactInfo extends Component {
             return this.props.contacts.filter(contact => (contact.id === parseInt(this.props.match.params.contactId)))
                 .map(contact => { return <React.Fragment key={contact.id}>{contact.contactFirstName} {contact.contactLastName}</React.Fragment> })
         }
-
-        let oneContactFirstName = () => {
-            return this.props.contacts.filter(contact => (contact.id === parseInt(this.props.match.params.contactId)))
-                .map(contact => { return <React.Fragment key={contact.id}>{contact.contactFirstName}</React.Fragment> })
-        }
-
 
         return (
 

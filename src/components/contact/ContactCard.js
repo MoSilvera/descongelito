@@ -26,7 +26,7 @@ export default class ContactCard extends Component {
                         this.props.history.push(`/contacts/${contact.id}/info`)
                     }
                 }>
-                  <span id="info"><i class="fas fa-info-circle"></i> Info</span>
+                  <span id="info"><i className="fas fa-info-circle"></i> Info</span>
                     </Button>
                 </div>
             )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import raidLocationManager from "../../modules/resourceManager/raidLocationManager"
-
+import Loading from "./Loading"
 const mapStyles = {
   width: '100%',
   height: '90%',
@@ -42,7 +42,7 @@ export class MapContainer extends Component {
 
 
       if (loading) {
-        return null;
+        return <Loading />
       }
 
 

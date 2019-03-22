@@ -13,7 +13,7 @@
 #title{
     display: flex;
     flex-direction: row;
-    margin-left: 52px;
+    text-align: center;
     margin-top: 10px;
     font-family: 'Bungee Shade', cursive;
     color: #564256;
