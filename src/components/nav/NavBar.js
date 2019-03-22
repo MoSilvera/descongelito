@@ -16,7 +16,7 @@ class NavBar extends Component {
         <ul className="nav nav-pills">
           <li className="nav-item">
             <Link className="nav-link" to="/">
-            <h1 id="h1">  <i className="fas fa-home">  </i></h1>
+            <h1 id="h1">  <i className="fas fa-home"></i></h1>
             </Link>
           </li>
         </ul>

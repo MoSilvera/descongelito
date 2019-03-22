@@ -164,11 +164,9 @@ class ApplicationViews extends Component {
           return <Landing {...props} />
         }} />
         <Route exact path="/contacts" render={(props) => {
-          return <ContactList contacts={this.state.contacts} {...props} />
-        }} />
-        <Route exact path="/contacts/add" render={(props) => {
-          return <ContactAdd
-            addContact={this.addContact}
+          return <ContactList 
+            contacts={this.state.contacts}
+            addContact={this.addContact} 
             {...props} />
         }} />
         <Route exact path="/map" render={(props) => {
@@ -210,6 +208,7 @@ class ApplicationViews extends Component {
             emails={this.state.emails}
             cellNumbers={this.state.cellNumbers}
             updateMessage={this.updateMessage}
+            addMessage={this.addMessage}
             {...props} />
         }} />
         <Route exact path="/message/:messageId(\d+)" render={props => {

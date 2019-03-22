@@ -21,7 +21,7 @@ export default class ContactPhoneCard extends Component {
                 carriers={this.props.carriers}/>
              <button
                                 onClick={() => this.props.deleteCellNumber(cellNumber.id)}
-                                className="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                className="btn btn-danger"><i className="fas fa-trash-alt"></i></button>
              </span>
              </div>) }
             </section>

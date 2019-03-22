@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
 export default class ContactAdd extends Component {
@@ -7,10 +8,17 @@ export default class ContactAdd extends Component {
 
 
         state = {
+            modal: false, 
             contactFirstName: "",
             contactLastName: "",
             userId: "",
           }
+
+          toggle = () => {
+            this.setState(prevState => ({
+                modal: !prevState.modal
+            }));
+        }
 
           // Update state whenever an input field is edited
           handleFieldChange = evt => {
@@ -29,15 +37,21 @@ export default class ContactAdd extends Component {
 
               this.props
                 .addContact(contact)
-                .then(() => this.props.history.push("/contacts"))
+                .then(() => this.toggle())
+
 
           }
 
           render() {
             return (
               <React.Fragment>
+              <Button onClick={this.toggle}><i className="fas fa-user-plus"></i>  Add Contact</Button>
+                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                        <ModalHeader toggle={this.toggle}>Add Message</ModalHeader>
+                        <ModalBody>
+
                 <form className="contact-add">
-                <h1>Add a Contact</h1>
+
                   <div className="form-group">
                     <label htmlFor="contactFirstName">First Name</label>
                     <input
@@ -60,15 +74,18 @@ export default class ContactAdd extends Component {
                       placeholder="LastName"
                     />
                     </div>
-                  <button
-                    type="submit"
-                    onClick={this.constructNewContact}
-                    className="btn btn-primary"
-                  >
-                    Submit
-                  </button>
+
                 </form>
-              </React.Fragment>
+
+              </ModalBody>
+                        <ModalFooter>
+                            <Button
+                            onClick={this.constructNewContact}>Save Change</Button>
+
+                            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        </ModalFooter>
+                    </Modal>
+                    </React.Fragment>
             )
           }
     }
