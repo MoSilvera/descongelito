@@ -42,6 +42,7 @@ export class MapContainer extends Component {
 
 
       if (loading) {
+
         return <Loading />
       }
 

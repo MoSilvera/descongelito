@@ -14,11 +14,11 @@
 #messageTitle{
 
     display: flex;
-    flex-direction: column;
-    margin-left: 52px;
-    margin-top: 10px;
+    justify-content: center;
+    text-align: center;
     font-family: 'Bungee Shade', cursive;
     color: #564256;
+    margin: 10px;
 
 }
 
@@ -31,3 +31,36 @@
     font-size: 17px;
 }
 
+.oneMessage{
+    display:flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+#titleBox{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
+.msgCard{
+    border: 3px solid #564256;
+    margin: 5px;
+    flex-basis: 51%;
+}
+
+.cards{
+    border: 2px solid #564256;
+    margin: 15px;
+    display: flex;
+    flex-basis: 48%;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Nav, NavItem, NavLink, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 import "./navBar.css"
 import melt from "../../images/cold.png"
 class NavBar extends Component {
@@ -22,7 +22,7 @@ class NavBar extends Component {
         </ul>
         <button
         type="button"
-        > <img id="icon" src={melt}/></button>
+        > <img alt="thermometer" id="icon" src={melt}/></button>
         <Button
           id="logout"
           type="button"

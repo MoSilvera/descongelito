@@ -48,7 +48,7 @@ export default class Landing extends Component {
 
                     }
                     }>
-                    <h1><img id="tempButton" src={tempButton}/></h1>
+                    <h1><img alt="emergency button" id="tempButton" src={tempButton}/></h1>
                     </div>
                     <ToastContainer />
 
