@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import messageManager from "../../../../modules/resourceManager/messageManager"
-
+import "./contactMessage.css"
 
 export default class EditContactMessage extends Component {
 
@@ -91,7 +91,7 @@ export default class EditContactMessage extends Component {
                         <ModalBody>
                             <React.Fragment>
                                 <form className="message-edit">
-                                    <h1>Change this message</h1>
+
                                     <div className="form-group">
                                         <label htmlFor="messageSubject">Subject</label>
                                         <input
@@ -106,7 +106,8 @@ export default class EditContactMessage extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="messageBody">Message Body</label>
-                                        <input
+                                        <textarea
+                                            rows="5"
                                             type="text"
                                             required
                                             className="form-control"
@@ -119,6 +120,7 @@ export default class EditContactMessage extends Component {
                                     <div className="form-group">
                                         <label htmlFor="contact">Assign to Contact</label>
                                         <select
+                                            className="form-control"
                                             defaultValue=""
                                             name="contactSelection"
                                             id="contactSelection"
@@ -143,7 +145,7 @@ export default class EditContactMessage extends Component {
 
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="primary" onClick={this.updateExistingMessage}>Save Change</Button>
+                            <Button  onClick={this.updateExistingMessage}>Save Change</Button>
 
                             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                         </ModalFooter>

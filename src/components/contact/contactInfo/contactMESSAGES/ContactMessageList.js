@@ -26,7 +26,7 @@ export default class ContactMessageList extends Component {
                     {this.props.messages.filter(message => (message.contactId === parseInt(this.props.match.params.contactId)))
                         .map(message => {
                             return <Card body className="cards" key={message.id}>
-                                <CardTitle>Subject:{message.messageSubject}</CardTitle>
+                                <CardTitle>Subject: {message.messageSubject}</CardTitle>
                                 <div className="buttonGroup">
                                     <EditContactMessage
                                         messageId={message.id}
