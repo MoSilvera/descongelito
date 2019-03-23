@@ -2,11 +2,8 @@ import React, { Component } from "react"
 import { Route } from "react-router-dom"
 import MapContainer from "./map/Map"
 import Landing from "./home/Landing"
-import ContactEdit from "./contact/contactInfo/ContactEdit"
 import ContactList from "./contact/ContactList"
-import ContactAdd from "./contact/ContactAdd"
 import ContactInfo from "./contact/contactInfo/ContactInfo"
-import AddContactMessage from "./contact/contactInfo/contactMESSAGES/AddContactMessage"
 import ContactMessageDetail from "./contact/contactInfo/contactMESSAGES/ContactMessageDetail"
 import ContactMessageList from "./contact/contactInfo/contactMESSAGES/ContactMessageList"
 import ContactContactList from "./contact/contactInfo/contactCONTACTS/ContactContactList"
@@ -164,13 +161,13 @@ class ApplicationViews extends Component {
           return <Landing {...props} />
         }} />
         <Route exact path="/contacts" render={(props) => {
-          return <ContactList 
+          return <ContactList
             contacts={this.state.contacts}
-            addContact={this.addContact} 
+            addContact={this.addContact}
             {...props} />
         }} />
         <Route exact path="/map" render={(props) => {
-          return <MapContainer 
+          return <MapContainer
           raidLocations={this.state.raidLocations}
           {...props} />
         }} />
@@ -181,9 +178,6 @@ class ApplicationViews extends Component {
             deleteContact={this.deleteContact}
             updateContact={this.updateContact}
             {...props} />
-        }} />
-        <Route exact path="/contacts/:contactId(\d+)/edit" render={props => {
-          return <ContactEdit contact={this.state.contacts}{...props} />
         }} />
         <Route exact path="/contacts/:contactId(\d+)/info/contacts" render={props => {
           return <ContactContactList
@@ -214,17 +208,6 @@ class ApplicationViews extends Component {
         <Route exact path="/message/:messageId(\d+)" render={props => {
           return <ContactMessageDetail {...props} />
         }} />
-
-        <Route exact path="/messages/:contactId(\d+)/add" render={props => {
-          return <AddContactMessage
-            contacts={this.state.contacts}
-            emails={this.state.emails}
-            cellNumbers={this.state.cellNumbers}
-            addMessage={this.addMessage}
-
-            {...props} />
-        }}
-        />
 
       </React.Fragment>
     )
