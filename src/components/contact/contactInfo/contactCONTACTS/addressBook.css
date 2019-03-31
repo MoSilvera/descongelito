@@ -18,3 +18,26 @@
     font-family: 'Bungee Shade', cursive;
     color: #564256;
 }
+
+.ContactAddresses{
+    width: 80%;
+    display: flex;
+    padding: 20px;
+    margin-left: 1.75438%;
+    overflow: hidden;
+    border: solid 4px #564256;
+    /* font-family: 'Bungee Shade', cursive; */
+    color: #564256;
+    font-family: 'Roboto', sans-serif;
+}
+.grouping{
+    color: #564256;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: left;
+    width: 60%;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+    align-items: center;
+    align-content: center;
+}

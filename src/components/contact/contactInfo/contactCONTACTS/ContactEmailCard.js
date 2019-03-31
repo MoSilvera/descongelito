@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EditContactEmail from "./EditContactEmail"
+import {Button, Card, CardTitle} from 'reactstrap'
 
 
 
@@ -10,19 +11,19 @@ export default class ContactEmailCard extends Component {
 
         return (
 
-            <section >
+            <Card className="ContactAddresses">
             { this.props.emails.filter( email => email.contactId === parseInt(this.props.match.params.contactId))
             .map(email =>
             <div key={email.id}>
-            <h5>{email.email}</h5>
+            <CardTitle>{email.email}</CardTitle>
              <span>
             <EditContactEmail emailId={email.id} updateEmail={this.props.updateEmail} />
-             <button
+             <Button
                                 onClick={() => this.props.deleteEmail(email.id)}
-                                className="btn btn-danger"><i className="fas fa-trash-alt"></i></button>
+                                className="btn"><i className="fas fa-trash-alt"></i> Delete</Button>
              </span>
              </div>) }
-            </section>
+            </Card>
         )
     }
 }

@@ -60,7 +60,7 @@ export default class EditContactPhone extends Component {
 
         return (
             <React.Fragment>
-                    <Button color="info" onClick={this.toggle}><i className="fas fa-edit"></i></Button>
+                    <Button onClick={this.toggle}><i className="fas fa-edit"></i> Edit</Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                         <ModalHeader toggle={this.toggle}>Edit Phone Number</ModalHeader>
                         <ModalBody>

@@ -47,7 +47,7 @@ export default class AddContactPhone extends Component {
 
         return (
             <React.Fragment>
-                <Button color="info" onClick={this.toggle}>Add Phone</Button>
+                <span className="grouping">Phone Numbers<Button onClick={this.toggle}><i class="fas fa-plus-square"></i></Button></span>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>New Phone</ModalHeader>
                     <ModalBody>

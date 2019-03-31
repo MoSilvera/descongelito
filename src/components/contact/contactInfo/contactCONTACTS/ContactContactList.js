@@ -19,6 +19,7 @@ export default class ContactContactList extends Component {
             <section className="contactContactList">
                 <div id="title">{oneContact()}</div>
                <AddContactEmail
+                contacts={this.props.contacts}
                 addEmail={this.props.addEmail}
                 {...this.props} />
 
@@ -30,6 +31,7 @@ export default class ContactContactList extends Component {
                     {...this.props} />
                 <hr></hr>
                 <AddContactPhone
+                    contacts={this.props.contacts}
                     addPhone={this.props.addPhone}
                     carriers={this.props.carriers}
                     {...this.props}/>

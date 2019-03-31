@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
@@ -45,7 +45,7 @@ export default class AddContactEmail extends Component {
 
         return (
             <React.Fragment>
-                    <Button color="info" onClick={this.toggle}>Add Email</Button>
+                   <span className="grouping">Emails<Button onClick={this.toggle}><i class="fas fa-plus-square"></i></Button></span>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                         <ModalHeader toggle={this.toggle}>New Email</ModalHeader>
                         <ModalBody>
