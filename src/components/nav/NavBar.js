@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { Button } from 'reactstrap';
 import "./navBar.css"
 import melt from "../../images/cold.png"
+import {withRouter} from 'react-router-dom';
 class NavBar extends Component {
   logout = () => {
     sessionStorage.clear("credentials")
@@ -15,14 +16,16 @@ class NavBar extends Component {
       <nav id="nav" style={{backgroundColor:"white"}}className="navbar fixed-top flex-md-nowrap p-0 shadow">
         <ul className="nav nav-pills">
           <li className="nav-item">
-            <Link className="nav-link" to="/">
-            <h1 id="h1">  <i className="fas fa-home"></i></h1>
-            </Link>
+            <button className="nav-link"
+             onClick={() => this.props.history.goBack()}>
+            <h1 id="h1"><i class="far fa-arrow-alt-circle-left"></i></h1>
+            </button>
           </li>
         </ul>
-        <button
+        <Link
         type="button"
-        > <img alt="thermometer" id="icon" src={melt}/></button>
+        to="/"
+        > <img alt="thermometer" id="icon" src={melt}/></Link>
         <Button
           id="logout"
           type="button"
@@ -34,4 +37,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar
+export default withRouter(NavBar);

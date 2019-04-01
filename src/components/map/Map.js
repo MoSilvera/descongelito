@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import raidLocationManager from "../../modules/resourceManager/raidLocationManager"
 import Loading from "./Loading"
 const mapStyles = {
@@ -12,8 +12,22 @@ export class MapContainer extends Component {
 
   state = {
     raidLocations: [],
-    userLocation: { lat: 32, lng: 32 }, loading: true
-}
+    userLocation: { lat: 32, lng: 32 }, loading: true,
+    isOpen: false,
+  }
+
+  handleToggle = (requestedState) => {
+    this.setState({
+      isOpen: requestedState
+    });
+    console.log(this.state.isOpen)
+  }
+
+  // handleToggleClose = () => {
+  //   this.setState({
+  //     isOpen: false
+  //   });
+  // }
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
@@ -38,13 +52,13 @@ export class MapContainer extends Component {
   render() {
 
 
-      const { loading, userLocation } = this.state;
+    const { loading, userLocation } = this.state;
 
 
-      if (loading) {
+    if (loading) {
 
-        return <Loading />
-      }
+      return <Loading />
+    }
 
 
     return (
@@ -61,9 +75,19 @@ export class MapContainer extends Component {
               key={location.id}
               name={"Raid Occurance"}
               position={{ lat: location.lat, lng: location.long }}
-            />
-
+              onClick={() => this.handleToggle(true)}
+            >
+              {
+                this.state.isOpen &&
+                <InfoWindow
+                  onCloseClick={() => this.handleToggle(false)}
+                  >
+                  <h1>1</h1>
+                </InfoWindow>
+              }
+            </Marker>
           }))
+
         }
 
       </Map>

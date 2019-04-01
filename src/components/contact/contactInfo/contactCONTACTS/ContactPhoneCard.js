@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EditContactPhone from './EditContactPhone';
 import {Button, Card, CardTitle} from 'reactstrap'
+import "./addressBook.css"
 
 
 export default class ContactPhoneCard extends Component {
@@ -10,10 +11,10 @@ export default class ContactPhoneCard extends Component {
 
         return (
 
-            <Card className="ContactAddresses">
+            <section>
               { this.props.cellNumbers.filter(cellNumber => cellNumber.contactId === parseInt(this.props.match.params.contactId))
-            .map(cellNumber =>
-            <div key={cellNumber.id}>
+            .map(cellNumber => 
+                <Card className="ContactAddresses">
             <CardTitle>{cellNumber.phoneNumber}</CardTitle>
                <span><EditContactPhone
                 cellNumberId={cellNumber.id}
@@ -23,8 +24,8 @@ export default class ContactPhoneCard extends Component {
                                 onClick={() => this.props.deleteCellNumber(cellNumber.id)}
                                 className="btn"><i className="fas fa-trash-alt"></i> Delete</Button>
              </span>
-             </div>) }
-            </Card>
+             </Card>) }
+            </section>
         )
     }
 }
